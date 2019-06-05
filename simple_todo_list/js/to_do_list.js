@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var lists_created = 0;
 
 
-	var list_item_layout = '<tr><td><input type="text"  placeholder="Task"></td><td><button class="add_list_item_btn">+</button></td></tr>';
+	var list_item_layout = '<tr><td><input class ="list_item_inputs" type="text"  placeholder="Task"></td><td><button class="add_list_item_btn">Add Task</button></td><td><button class="update_list_item_btn">Update Task</button></td><td><button class="delete_list_item_btn">Delete Task</button></td></tr>';
 
 	
 
@@ -18,7 +18,7 @@ $(document).ready(function(){
 	// when user clicks create a list 
 	$('#create_list_btn').on("click", function(){
 
-		var new_list_element = '<div id="list' + (lists_created + 1).toString() + '"><input type="text" class="list_name_inputs" id="list_name' +  (lists_created + 1).toString() + '" placeholder="Name your list"></div>';
+		var new_list_element = '<div id="list' + (lists_created + 1).toString() + '"><input type="text" class="list_name_inputs" id="list_name' +  (lists_created + 1).toString() + '" placeholder="Name your list"> <button class="update_list_btn">Update List</button><button class="delete_list_btn">Delete List</button></div>';
 
 
 		//add a new list element with empty input 
@@ -32,6 +32,10 @@ $(document).ready(function(){
 
 
 	});
+
+
+
+/******************  MANIPULATING LISTS ******************************/
 
 	//when user types new list name 
 	$(".lists_container").on('keyup', ".list_name_inputs", function (e) {
@@ -60,7 +64,28 @@ $(document).ready(function(){
 		    }
 	});
 
+	//when user clicks update list 
+	$(".lists_container").on("click", ".update_list_btn", function(){
 
+			// get closest input for this button 
+			var list_name_input_to_update = $(this).closest('div').find( ".list_name_inputs" );
+			list_name_input_to_update.removeAttr('disabled');
+
+
+	});
+
+
+	//when user clicks delete list 
+	$(".lists_container").on("click", ".delete_list_btn", function(){
+
+			// get div container for this button 
+			$(this).closest('div').remove();
+
+	});
+
+
+
+/******************         MANIPULATING LIST ITEMS ******************************/
 	//when user clicks add new list item to a task 
 	$(".lists_container").on("click", ".add_list_item_btn", function(){
 
@@ -69,6 +94,37 @@ $(document).ready(function(){
 			parent_table.append(list_item_layout);
 
 	});
+
+	//when user presses enter on the new list item 
+	$(".lists_container").on('keyup', ".list_item_inputs", function(e){
+			 if (e.keyCode == 13) {
+			 	if($(this).val().length > 3)
+					$(this).attr('disabled','disabled');
+			}
+
+	});
+
+
+	//when user clicks update list item on a task 
+	$(".lists_container").on("click", ".update_list_item_btn", function(){
+
+			// get closest input 
+			var item_input_to_update = $(this).closest('tr').find( "input" );
+			item_input_to_update.removeAttr('disabled');
+
+	});
+
+
+	//when user clicks delete list item from a task 
+	$(".lists_container").on("click", ".delete_list_item_btn", function(){
+
+			// get closest input 
+			var item_input_to_update = $(this).closest('tr').remove();
+
+	});
+
+
+
 
 
 
