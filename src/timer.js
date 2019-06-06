@@ -2,25 +2,42 @@
 let paused = false;
 let pauseClicked = false;
 let time = {
-    seconds: 5,
-    minutes: 3,
+    seconds: 60,
+    minutes: 0,
     timerID: 0
 };
 
-const setMinutes = (time) => {
+const setMinutes = () => {
 
-    document.getElementById('minutes').innerHTML = time;
+    if (time.minutes >= 0) {
+
+        if (time.minutes == 0) {
+
+            document.getElementById('minutes').innerHTML = '0' + time.minutes;
+        }
+        else {
+
+            document.getElementById('minutes').innerHTML = time.minutes;
+        }
+    }
 };
 
-const setSeconds = (time) => {
+const setSeconds = () => {
 
-    if (time < 10) {
+    if (time.seconds >= 0) {
 
-        document.getElementById('seconds').innerHTML = '0' + time;
-    }
-    else {
+        if (time.seconds == 20) {
 
-        document.getElementById('seconds').innerHTML = time;
+            document.getElementById('seconds').innerHTML = '00';
+        }
+        else if (time.seconds < 10) {
+
+            document.getElementById('seconds').innerHTML = '0' + time.seconds;
+        }
+        else {
+
+            document.getElementById('seconds').innerHTML = time.seconds;
+        }
     }
 };
 
@@ -48,44 +65,41 @@ const stopTimer = () => {
     clearInterval(time.timerID);
 }
 
+const runSecondsTimer = () => {
+
+    time.timerID = setInterval(() => {
+
+        --time.seconds;
+        setSeconds();
+        
+        if (time.seconds === 0) {
+
+            time.seconds = 12;
+            clearInterval(time.timerID);
+            runTimer();
+        }
+    }, 1000);
+};
+
 const runTimer = () => {
 
-    console.log(time.minutes);
-    console.log(time.seconds);
+    if (time.minutes > 0 && !pauseClicked) {
 
-    if (time.minutes >= 0) {
+        --time.minutes;
+        setMinutes();
+        runSecondsTimer();
+    }
+    else if (time.minutes >= 0 && pauseClicked) {
 
-        if (!pauseClicked) {
-            --time.minutes;
-        }
-
-        time.timerID = setInterval(() => {
-
-            --time.seconds;
-
-            if (time.minutes >= 0) {
-                setMinutes(time.minutes);
-            }
-
-            if (time.seconds >= 0) {
-                setSeconds(time.seconds);
-            }
-            
-            if (time.seconds <= 0) {
-
-                if (pauseClicked) {
-                    --time.minutes;
-                }
-
-                time.seconds = 5;
-                clearInterval(time.timerID);
-                runTimer();
-            }
-
-        }, 1000);
+        setMinutes();
+        --time.minutes;
+       runSecondsTimer();
     }
 };
 
 //Setup Event-Handlers
 document.getElementById('start')
     .addEventListener('click', () => startPomodoro());
+
+    document.getElementById('user-input')
+    .addEventListener('change',(event)=> time.minutes = event.target.value);
