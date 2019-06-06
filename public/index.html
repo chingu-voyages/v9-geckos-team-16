@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+
 <body>
-    
-    <input type="number" id="user-input"/>
-    
-    <span id="minutes">00</span>
-    <span>:</span>
-    <span id="seconds">00</span>
-    
-    <button type="button" id="start">Start</button>
-    
+
+    <div id="clock-body">
+        <span id="clock-minutes">00</span>
+        <span>:</span>
+        <span id="clock-seconds">00</span>
+        <button type="button" id="start">Start</button>
+    </div>
+    <div id="timer-input">
+        <h4>Session Duration</h4><input type="number" id="session-minutes" />
+        <h4>Long Break Duration</h4><input type="number" id="long-break-minutes" />
+        <h4>Short Break Duration</h4><input type="number" id="short-break-minutes" />
+        <h4>Long Break Interval</h4><input type="number" id="break-interval" />
+    </div>
     <script src="../src/timer.js"></script>
 </body>
 
