@@ -1,34 +1,96 @@
 let paused = false;
 let pauseClicked = false;
+
 let timer = {
 
-    seconds: 10,
+    seconds: 0,
     breakInterval: 4,
     sessionCount: 0,
-    longBreakMinutes: 15,
-    shortBreakMnutes: 5,
-    sessionMinutes: 2,
+    longBreakMinutes: 2,
+    shortBreakMinutes: 1,
+    sessionMinutes: 1,
     timerID: 0
 };
 
 let runningTimer = {
 
     sessionTimer: false,
-    shortBreakTimer: false,
-    longBreakTimer: false
+    breakTimer: true
 };
 
-const setMinutes = () => {
+const decrementTimer = (callback) => {
 
-    if (timer.sessionMinutes >= 0) {
+    switch (callback.name) {
+        case 'runPomodoro':
+            --timer.sessionMinutes;
+            break;
+        case 'runBreakTime':
+            {
+                if (timer.sessionCount % timer.breakInterval === 0) {
+                    --timer.longBreakMinutes;
+                }
+                else {
+                    --timer.shortBreakMinutes;
+                }
+            }
+            break;
+    }
+};
 
-        if (timer.sessionMinutes == 0) {
+const finishSession = () => {
 
-            document.getElementById('clock-minutes').innerHTML = '0' + timer.sessionMinutes;
+    console.log('At finish sessions');
+    paused = false;
+    pauseClicked = false;
+    document.getElementById('start').innerHTML = 'Start';
+
+    let inputs = document.getElementById('timer-input').querySelectorAll('input');
+
+    for (let index = 0; index < inputs.length; index++) {
+
+        const element = inputs[index];
+        switch (element.id) {
+            case 'session-minutes':
+                timer.sessionMinutes = element.value;
+                break;
+            case 'long-break-minutes':
+                timer.longBreakMinutes = element.value;
+                break;
+            case 'short-break-minutes':
+                timer.shortBreakMinutes = element.value;
+                break;
+        }
+    }
+};
+
+const getSessionMinutes = () => {
+
+    return timer.sessionMinutes;
+};
+
+const getBreakTimeMinutes = () => {
+
+    if (timer.sessionCount % timer.breakInterval === 0) {
+
+        return timer.longBreakMinutes;
+    }
+    else {
+
+        return timer.shortBreakMinutes;
+    }
+};
+
+const setMinutes = (callback) => {
+
+    if (callback() >= 0) {
+
+        if (callback() == 0) {
+
+            document.getElementById('clock-minutes').innerHTML = '0' + callback();
         }
         else {
 
-            document.getElementById('clock-minutes').innerHTML = timer.sessionMinutes;
+            document.getElementById('clock-minutes').innerHTML = callback();
         }
     }
 };
@@ -48,8 +110,9 @@ const setSeconds = () => {
     }
 };
 
-const startPomodoro = () => {
+const startSession = (callback) => {
 
+    console.log(callback);
     let button = document.getElementById('start');
 
     if (paused) {
@@ -62,7 +125,7 @@ const startPomodoro = () => {
     else {
 
         button.innerHTML = 'Pause';
-        runTimer();
+        runMinutesTimer(callback);
         paused = !paused;
     }
 };
@@ -72,7 +135,7 @@ const stopTimer = () => {
     clearInterval(timer.timerID);
 }
 
-const runSecondsTimer = () => {
+const runSecondsTimer = (callback) => {
 
     timer.timerID = setInterval(() => {
 
@@ -81,43 +144,46 @@ const runSecondsTimer = () => {
 
         if (timer.seconds === 0) {
 
-            timer.seconds = 10;
             clearInterval(timer.timerID);
 
-            if (timer.sessionMinutes > 0) {
+            if (callback() === 0) {
 
-                if (pauseClicked) {
-                    
-                    --timer.sessionMinutes;
-                    runTimer();
-                }
-                else if (!pauseClicked) {
-                    
-                    runTimer();
-                }
-                
-                if (timer.sessionMinutes === 0) {
-
+                if (callback.name === 'runPomodoro') {
                     ++timer.sessionCount;
                     console.log(timer.sessionCount);
+                }
+                finishSession();
+            }
+            else if (callback() > 0) {
+
+                timer.seconds = 10;
+
+                if (pauseClicked) {
+
+                    decrementTimer(callback);
+                    runMinutesTimer(callback);
+                }
+                else if (!pauseClicked) {
+
+                    runMinutesTimer(callback);
                 }
             }
         }
     }, 1000);
 };
 
-const runTimer = () => {
+const runMinutesTimer = (callback) => {
 
     if (!pauseClicked) {
 
-        --timer.sessionMinutes;
-        setMinutes();
-        runSecondsTimer();
+        decrementTimer(callback);
+        setMinutes(callback);
+        runSecondsTimer(callback);
     }
     else if (pauseClicked) {
 
-        setMinutes();
-        runSecondsTimer();
+        setMinutes(callback);
+        runSecondsTimer(callback);
     }
 };
 
@@ -125,8 +191,25 @@ const runTimer = () => {
 document.getElementById('start')
     .addEventListener('click', (event) => {
 
+        let callback;
 
-        startPomodoro();
+        if (timer.seconds === 0) {
+            timer.seconds = 10;
+            runningTimer.sessionTimer = !runningTimer.sessionTimer;
+            runningTimer.breakTimer = !runningTimer.breakTimer;
+        }
+        if (runningTimer.sessionTimer) {
+
+            console.log('session');
+            callback = getSessionMinutes;
+        }
+        else if (runningTimer.breakTimer) {
+
+            console.log('breaktime');
+            callback = getBreakTimeMinutes;
+        }
+
+        startSession(callback);
     });
 
 document.getElementById('timer-input')
@@ -143,7 +226,7 @@ document.getElementById('timer-input')
                 timer.longBreakMinutes = input.value;
                 break;
             case 'short-break-minutes':
-                timer.shortBreakMnutes = input.value;
+                timer.shortBreakMinutes = input.value;
                 break;
             case 'session-minutes':
                 timer.sessionMinutes = input.value;
