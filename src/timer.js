@@ -1,14 +1,21 @@
-
 let paused = false;
 let pauseClicked = false;
 let timer = {
 
-    seconds: 60,
-    breakInterval: 0,
-    longBreakMinutes: 0,
-    shortBreakMnutes: 0,
-    sessionMinutes: 0,
+    seconds: 10,
+    breakInterval: 4,
+    sessionCount: 0,
+    longBreakMinutes: 15,
+    shortBreakMnutes: 5,
+    sessionMinutes: 2,
     timerID: 0
+};
+
+let runningTimer = {
+
+    sessionTimer: false,
+    shortBreakTimer: false,
+    longBreakTimer: false
 };
 
 const setMinutes = () => {
@@ -74,10 +81,26 @@ const runSecondsTimer = () => {
 
         if (timer.seconds === 0) {
 
-            timer.seconds = 60;
+            timer.seconds = 10;
             clearInterval(timer.timerID);
-            if (timer.sessionMinutes >= 0) {
-                runTimer();
+
+            if (timer.sessionMinutes > 0) {
+
+                if (pauseClicked) {
+                    
+                    --timer.sessionMinutes;
+                    runTimer();
+                }
+                else if (!pauseClicked) {
+                    
+                    runTimer();
+                }
+                
+                if (timer.sessionMinutes === 0) {
+
+                    ++timer.sessionCount;
+                    console.log(timer.sessionCount);
+                }
             }
         }
     }, 1000);
@@ -85,7 +108,7 @@ const runSecondsTimer = () => {
 
 const runTimer = () => {
 
-    if (timer.sessionMinutes > 0 && !pauseClicked) {
+    if (!pauseClicked) {
 
         --timer.sessionMinutes;
         setMinutes();
@@ -94,14 +117,17 @@ const runTimer = () => {
     else if (pauseClicked) {
 
         setMinutes();
-        --timer.sessionMinutes;
         runSecondsTimer();
     }
 };
 
 //Setup Event-Handlers
 document.getElementById('start')
-    .addEventListener('click', () => startPomodoro());
+    .addEventListener('click', (event) => {
+
+
+        startPomodoro();
+    });
 
 document.getElementById('timer-input')
     .addEventListener('change', (event) => {
