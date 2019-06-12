@@ -28,8 +28,7 @@
             case 'getBreakTimeMinutes':
                 if (timer.sessionCount % timer.breakInterval === 0) {
                     --timer.longBreakMinutes;
-                }
-                else {
+                } else {
                     --timer.shortBreakMinutes;
                 }
                 break;
@@ -91,8 +90,7 @@
 
             console.log('session');
             callback = getSessionMinutes;
-        }
-        else if (runningTimer.breakTimer) {
+        } else if (runningTimer.breakTimer) {
 
             console.log('breaktime');
             callback = getBreakTimeMinutes;
@@ -111,8 +109,7 @@
         if (timer.sessionCount % timer.breakInterval === 0) {
 
             return timer.longBreakMinutes;
-        }
-        else {
+        } else {
 
             return timer.shortBreakMinutes;
         }
@@ -125,8 +122,7 @@
             if (timerMinutes() == 0) {
 
                 document.getElementById('clock-minutes').innerHTML = '0' + timerMinutes();
-            }
-            else {
+            } else {
 
                 document.getElementById('clock-minutes').innerHTML = timerMinutes();
             }
@@ -139,12 +135,10 @@
 
             if (timer.seconds === 60) {
                 document.getElementById('clock-seconds').innerHTML = '00';
-            }
-            else if (timer.seconds < 10) {
+            } else if (timer.seconds < 10) {
 
                 document.getElementById('clock-seconds').innerHTML = '0' + timer.seconds;
-            }
-            else {
+            } else {
 
                 document.getElementById('clock-seconds').innerHTML = timer.seconds;
             }
@@ -162,8 +156,7 @@
             pauseTimer();
             paused = !paused;
             pauseClicked = true;
-        }
-        else {
+        } else {
 
             button.innerHTML = 'Pause';
             runMinutesTimer(timerMinutes);
@@ -191,8 +184,7 @@
 
                     addSessionCount(timerMinutes);
                     finishSession();
-                }
-                else if (timerMinutes() > 0) {
+                } else if (timerMinutes() > 0) {
 
                     timer.seconds = 60;
 
@@ -200,8 +192,7 @@
 
                         decrementTimer(timerMinutes);
                         runMinutesTimer(timerMinutes);
-                    }
-                    else if (!pauseClicked) {
+                    } else if (!pauseClicked) {
 
                         runMinutesTimer(timerMinutes);
                     }
@@ -217,8 +208,7 @@
             decrementTimer(timerMinutes);
             setMinutes(timerMinutes);
             runSecondsTimer(timerMinutes);
-        }
-        else if (pauseClicked) {
+        } else if (pauseClicked) {
 
             setMinutes(timerMinutes);
             runSecondsTimer(timerMinutes);
