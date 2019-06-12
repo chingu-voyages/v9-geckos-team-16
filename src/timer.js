@@ -19,9 +19,9 @@
         breakTimer: true
     };
 
-    const decrementTimer = (callback) => {
+    const decrementTimer = (timerMinutes) => {
 
-        switch (callback.name) {
+        switch (timerMinutes.name) {
             case 'getSessionMinutes':
                 --timer.sessionMinutes;
                 break;
@@ -62,18 +62,18 @@
         }
     };
 
-    const addSessionCount = (callback) => {
+    const addSessionCount = (timerMinutes) => {
 
-        if (callback.name === 'getSessionMinutes') {
+        if (timerMinutes.name === 'getSessionMinutes') {
             ++timer.sessionCount;
             console.log(timer.sessionCount);
         }
     };
 
-    const skipSession = (callback) => {
+    const skipSession = (timerMinutes) => {
 
         clearInterval(timer.timerID);
-        addSessionCount(callback);
+        addSessionCount(timerMinutes);
 
         timer.seconds = 60;
         runningTimer.sessionTimer = !runningTimer.sessionTimer;
@@ -118,17 +118,17 @@
         }
     };
 
-    const setMinutes = (callback) => {
+    const setMinutes = (timerMinutes) => {
 
-        if (callback() >= 0) {
+        if (timerMinutes() >= 0) {
 
-            if (callback() == 0) {
+            if (timerMinutes() == 0) {
 
-                document.getElementById('clock-minutes').innerHTML = '0' + callback();
+                document.getElementById('clock-minutes').innerHTML = '0' + timerMinutes();
             }
             else {
 
-                document.getElementById('clock-minutes').innerHTML = callback();
+                document.getElementById('clock-minutes').innerHTML = timerMinutes();
             }
         }
     };
@@ -151,32 +151,32 @@
         }
     };
 
-    const startSession = (callback) => {
+    const startSession = (timerMinutes) => {
 
-        console.log(callback);
+        console.log(timerMinutes);
         let button = document.getElementById('start');
 
         if (paused) {
 
             button.innerHTML = 'Start';
-            stopTimer();
+            pauseTimer();
             paused = !paused;
             pauseClicked = true;
         }
         else {
 
             button.innerHTML = 'Pause';
-            runMinutesTimer(callback);
+            runMinutesTimer(timerMinutes);
             paused = !paused;
         }
     };
 
-    const stopTimer = () => {
+    const pauseTimer = () => {
 
         clearInterval(timer.timerID);
     }
 
-    const runSecondsTimer = (callback) => {
+    const runSecondsTimer = (timerMinutes) => {
 
         timer.timerID = setInterval(() => {
 
@@ -187,41 +187,41 @@
 
                 clearInterval(timer.timerID);
 
-                if (callback() === 0) {
+                if (timerMinutes() === 0) {
 
-                    addSessionCount(callback);
+                    addSessionCount(timerMinutes);
                     finishSession();
                 }
-                else if (callback() > 0) {
+                else if (timerMinutes() > 0) {
 
                     timer.seconds = 60;
 
                     if (pauseClicked) {
 
-                        decrementTimer(callback);
-                        runMinutesTimer(callback);
+                        decrementTimer(timerMinutes);
+                        runMinutesTimer(timerMinutes);
                     }
                     else if (!pauseClicked) {
 
-                        runMinutesTimer(callback);
+                        runMinutesTimer(timerMinutes);
                     }
                 }
             }
         }, 1000);
     };
 
-    const runMinutesTimer = (callback) => {
+    const runMinutesTimer = (timerMinutes) => {
 
         if (!pauseClicked) {
 
-            decrementTimer(callback);
-            setMinutes(callback);
-            runSecondsTimer(callback);
+            decrementTimer(timerMinutes);
+            setMinutes(timerMinutes);
+            runSecondsTimer(timerMinutes);
         }
         else if (pauseClicked) {
 
-            setMinutes(callback);
-            runSecondsTimer(callback);
+            setMinutes(timerMinutes);
+            runSecondsTimer(timerMinutes);
         }
     };
 
