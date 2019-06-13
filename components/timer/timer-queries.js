@@ -9,11 +9,11 @@ const getCurrentTimer = () => {
 
     if (runningTimer.sessionTimer) {
 
-        console.log('session');
+        console.log('at session');
         callback = getSessionMinutes;
     } else if (runningTimer.breakTimer) {
 
-        console.log('breaktime');
+        console.log('at breaktime');
         callback = getBreakTimeMinutes;
     }
 
@@ -41,15 +41,9 @@ const getCurrentMinutes = () => {
     return timer.currentMinutes;
 };
 
-const getCurrentSeconds = () => {
-
-    return timer.currentSeconds;
-};
-
 export {
     getCurrentTimer,
     getSessionMinutes,
     getBreakTimeMinutes,
-    getCurrentMinutes,
-    getCurrentSeconds
+    getCurrentMinutes
 };

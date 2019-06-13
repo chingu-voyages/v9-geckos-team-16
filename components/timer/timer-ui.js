@@ -30,9 +30,7 @@ const updateBarTimer = (uiTimerCount) => {
         barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
     } else {
         barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100-percent}%,#1fbb39 ${percent}% )`;
-    }
-
-    
+    } 
 };
 
 const resetBarTimer = () => {
@@ -40,33 +38,34 @@ const resetBarTimer = () => {
     barTimer.style.backgroundImage = 'linear-gradient(#1fbb39,#1fbb39)';
 };
 
-const setMinutes = (minutes) => {
+const setMinutes = (callback) => {
 
-    if (minutes() >= 0) {
+    let minutes = callback();
+    if (minutes >= 0) {
 
-        if (minutes() < 10) {
+        if (minutes < 10) {
 
-            document.getElementById('clock-minutes').innerHTML = '0' + minutes();
+            document.getElementById('clock-minutes').innerHTML = '0' + minutes;
         } else {
 
-            document.getElementById('clock-minutes').innerHTML = minutes();
+            document.getElementById('clock-minutes').innerHTML = minutes;
         }
     }
 };
 
 const setSeconds = (seconds) => {
 
-    if (seconds() >= 0) {
+    if (seconds >= 0) {
 
-        if (seconds() === 60) {
+        if (seconds === 60) {
 
             document.getElementById('clock-seconds').innerHTML = '00';
         } else if (timer.clockTotal < 10) {
 
-            document.getElementById('clock-seconds').innerHTML = '0' + seconds();
+            document.getElementById('clock-seconds').innerHTML = '0' + seconds;
         } else {
 
-            document.getElementById('clock-seconds').innerHTML = seconds();
+            document.getElementById('clock-seconds').innerHTML = seconds;
         }
     }
 };

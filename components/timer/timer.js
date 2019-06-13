@@ -19,8 +19,8 @@ let timer = {
 
 let runningTimer = {
 
-    sessionTimer: false,
-    breakTimer: true
+    sessionTimer: true,
+    breakTimer: false
 };
 
 const minutesToSeconds = (timerMinutes) => {
@@ -30,13 +30,19 @@ const minutesToSeconds = (timerMinutes) => {
     return timerMinutes() * 60;
 };
 
-const finishSession = () => {
+const finishSession = (timerMinutes) => {
 
     console.log('At finish sessions');
     timer.paused = false;
     timer.uiTimerCount = 0;
+    timer.clockTotal = 0;
+    timer.totalSeconds = 0;
     timer.currentMinutes = 0;
     timer.currentSeconds = 0;
+    
+    addSessionCount(timerMinutes);
+    runningTimer.sessionTimer = !runningTimer.sessionTimer;
+    runningTimer.breakTimer = !runningTimer.breakTimer;
     timerUI.resetBarTimer();
     setTotalSeconds();
     document.getElementById('start').innerHTML = 'Start';
@@ -64,6 +70,7 @@ const addSessionCount = (timerMinutes) => {
 
     if (timerMinutes.name === 'getSessionMinutes') {
         ++timer.sessionCount;
+        console.log('added session count');
         console.log(timer.sessionCount);
     }
 };
@@ -71,29 +78,27 @@ const addSessionCount = (timerMinutes) => {
 const skipSession = (timerMinutes) => {
 
     clearInterval(timer.timerID);
-    addSessionCount(timerMinutes);
-    finishSession();
+  
+    finishSession(timerMinutes);
     timerUI.setMinutes(timerQuery.getCurrentTimer());
-    timerUI.setSeconds(timerQuery.getCurrentSeconds);
+    timerUI.setSeconds(timer.currentSeconds);
 };
 
 const startSession = (timerMinutes) => {
 
-    console.log(timerMinutes);
     let button = document.getElementById('start');
-    
+
     timer.currentMinutes = Math.floor(timer.clockTotal / 60);
     timer.currentSeconds = timer.clockTotal % 60;
 
     timerUI.setMinutes(timerQuery.getCurrentMinutes);
-    timerUI.setSeconds(timerQuery.getCurrentSeconds);
+    timerUI.setSeconds(timer.currentSeconds);
 
     if (timer.paused) {
 
         button.innerHTML = 'Start';
         pauseSession();
         timer.paused = !timer.paused;
-
     } else {
 
         button.innerHTML = 'Pause';
@@ -115,15 +120,14 @@ const runSecondsTimer = (timerMinutes) => {
         ++timer.uiTimerCount;
         timer.currentMinutes = Math.floor(timer.clockTotal / 60);
         timer.currentSeconds = timer.clockTotal % 60;
-      
+
         timerUI.setMinutes(timerQuery.getCurrentMinutes);
-        timerUI.setSeconds(timerQuery.getCurrentSeconds);
+        timerUI.setSeconds(timer.currentSeconds);
         timerUI.updateBarTimer(timer.uiTimerCount);
 
         if (timer.clockTotal < 0) {
 
-            clearInterval(timer.timerID);
-            addSessionCount(timerMinutes);
+            clearInterval(timer.timerID);           
             finishSession();
         }
     }, 1000);
@@ -135,7 +139,7 @@ const setTotalSeconds = function () {
     document.getElementById('start')
         .addEventListener('click', (event) => {
 
-            console.log('at once event');
+            console.log('at trigger-once event');
 
             timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer());
             timer.clockTotal = timer.totalSeconds;
@@ -147,17 +151,13 @@ const setTotalSeconds = function () {
 
 const skipEvent = document.getElementById('skip')
     .addEventListener('click', (event) => {
-        
-        runningTimer.sessionTimer = !runningTimer.sessionTimer;
-        runningTimer.breakTimer = !runningTimer.breakTimer;
+
         skipSession(timerQuery.getCurrentTimer());
     });
 
 const startEvent = document.getElementById('start')
     .addEventListener('click', (event) => {
 
-        runningTimer.sessionTimer = !runningTimer.sessionTimer;
-        runningTimer.breakTimer = !runningTimer.breakTimer;
         startSession(timerQuery.getCurrentTimer());
     });
 
