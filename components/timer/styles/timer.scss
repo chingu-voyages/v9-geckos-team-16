@@ -14,8 +14,8 @@ $timer-color: #1fbb39;
     .block {
         position: absolute;
         background: #fff;
-        width: 230px;
-        height: 230px;
+        width: 280px;
+        height: 280px;
         display: block;
         border-radius: 50%;
         top: 10px;
@@ -23,7 +23,7 @@ $timer-color: #1fbb39;
     }
 }
 
-#time {
+#pieTime {
     font-size: 3em;
     position: absolute;
     top: 35%;
@@ -32,7 +32,6 @@ $timer-color: #1fbb39;
 }
 
 .degree {
-    /*90 + ( 360 * .1 )*/
     background-image: linear-gradient(90deg, transparent 50%, white 50%),
         linear-gradient(90deg, white 50%, transparent 50%);
 }

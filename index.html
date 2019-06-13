@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head runat="server">
     <title></title>
     <meta charset="utf-8">
-    <link href="../src/site.css" rel="stylesheet">
+    <link href="/components/timer/styles/timer.css" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="pie degree">
         <span class="block"></span>
-        <span id="time">0</span>
+        <span id="pieTime">0</span>
     </div>
 
     <div id="clock-body">
@@ -27,7 +27,7 @@
         <h4>Short Break Duration</h4><input type="number" id="short-break-minutes" value="1" />
         <h4>Long Break Interval</h4><input type="number" id="break-interval" value="4" />
     </div>
-    <script src="../src/timer.js"></script>
+    <script src="/components/app.js" type="module"></script>
 </body>
 
 </html>
