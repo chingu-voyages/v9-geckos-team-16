@@ -25,7 +25,14 @@ const updateClockFace = (percent) => {
 const updateBarTimer = (uiTimerCount) => {
 
     let percent = (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
-    barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
+    
+    if (percent > 50) {
+        barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
+    } else {
+        barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100-percent}%,#1fbb39 ${percent}% )`;
+    }
+
+    
 };
 
 const resetBarTimer = () => {
@@ -33,33 +40,33 @@ const resetBarTimer = () => {
     barTimer.style.backgroundImage = 'linear-gradient(#1fbb39,#1fbb39)';
 };
 
-const setMinutes = (timerMinutes) => {
+const setMinutes = (minutes) => {
 
-    if (timerMinutes() >= 0) {
+    if (minutes() >= 0) {
 
-        if (timerMinutes() < 10) {
+        if (minutes() < 10) {
 
-            document.getElementById('clock-minutes').innerHTML = '0' + timerMinutes();
+            document.getElementById('clock-minutes').innerHTML = '0' + minutes();
         } else {
 
-            document.getElementById('clock-minutes').innerHTML = timerMinutes();
+            document.getElementById('clock-minutes').innerHTML = minutes();
         }
     }
 };
 
-const setSeconds = () => {
+const setSeconds = (seconds) => {
 
-    if (timer.clockSeconds >= 0) {
+    if (seconds() >= 0) {
 
-        if (timer.clockSeconds === 60) {
+        if (seconds() === 60) {
 
             document.getElementById('clock-seconds').innerHTML = '00';
-        } else if (timer.clockSeconds < 10) {
+        } else if (timer.clockTotal < 10) {
 
-            document.getElementById('clock-seconds').innerHTML = '0' + timer.clockSeconds;
+            document.getElementById('clock-seconds').innerHTML = '0' + seconds();
         } else {
 
-            document.getElementById('clock-seconds').innerHTML = timer.clockSeconds;
+            document.getElementById('clock-seconds').innerHTML = seconds();
         }
     }
 };

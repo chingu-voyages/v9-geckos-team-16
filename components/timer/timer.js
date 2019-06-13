@@ -4,9 +4,10 @@ import * as timerQuery from './timer-queries.js';
 let timer = {
 
     paused: false,
-    pauseClicked: false,
+    currentMinutes: 0,
+    currentSeconds: 0,
     uiTimerCount: 0,
-    clockSeconds: 0,
+    clockTotal: 0,
     totalSeconds: 0,
     sessionCount: 0,
     breakInterval: 4,
@@ -29,29 +30,13 @@ const minutesToSeconds = (timerMinutes) => {
     return timerMinutes() * 60;
 };
 
-const decrementTimer = (timerMinutes) => {
-
-    switch (timerMinutes.name) {
-        case 'getSessionMinutes':
-            --timer.sessionMinutes;
-            break;
-        case 'getBreakTimeMinutes':
-            if (timer.sessionCount % timer.breakInterval === 0) {
-                --timer.longBreakMinutes;
-            } else {
-                --timer.shortBreakMinutes;
-            }
-            break;
-    }
-};
-
 const finishSession = () => {
 
     console.log('At finish sessions');
     timer.paused = false;
-    timer.pauseClicked = false;
-    timer.clockSeconds = 60;
     timer.uiTimerCount = 0;
+    timer.currentMinutes = 0;
+    timer.currentSeconds = 0;
     timerUI.resetBarTimer();
     setTotalSeconds();
     document.getElementById('start').innerHTML = 'Start';
@@ -86,30 +71,33 @@ const addSessionCount = (timerMinutes) => {
 const skipSession = (timerMinutes) => {
 
     clearInterval(timer.timerID);
-    runningTimer.sessionTimer = !runningTimer.sessionTimer;
-    runningTimer.breakTimer = !runningTimer.breakTimer;
-
     addSessionCount(timerMinutes);
     finishSession();
     timerUI.setMinutes(timerQuery.getCurrentTimer());
-    timerUI.setSeconds();
+    timerUI.setSeconds(timerQuery.getCurrentSeconds);
 };
 
 const startSession = (timerMinutes) => {
 
     console.log(timerMinutes);
     let button = document.getElementById('start');
+    
+    timer.currentMinutes = Math.floor(timer.clockTotal / 60);
+    timer.currentSeconds = timer.clockTotal % 60;
+
+    timerUI.setMinutes(timerQuery.getCurrentMinutes);
+    timerUI.setSeconds(timerQuery.getCurrentSeconds);
 
     if (timer.paused) {
 
         button.innerHTML = 'Start';
         pauseSession();
         timer.paused = !timer.paused;
-        timer.pauseClicked = true;
+
     } else {
 
         button.innerHTML = 'Pause';
-        runMinutesTimer(timerMinutes);
+        runSecondsTimer(timerMinutes);
         timer.paused = !timer.paused;
     }
 };
@@ -123,50 +111,22 @@ const runSecondsTimer = (timerMinutes) => {
 
     timer.timerID = setInterval(() => {
 
+        --timer.clockTotal;
         ++timer.uiTimerCount;
-        --timer.clockSeconds;
-
+        timer.currentMinutes = Math.floor(timer.clockTotal / 60);
+        timer.currentSeconds = timer.clockTotal % 60;
+      
+        timerUI.setMinutes(timerQuery.getCurrentMinutes);
+        timerUI.setSeconds(timerQuery.getCurrentSeconds);
         timerUI.updateBarTimer(timer.uiTimerCount);
-        timerUI.setSeconds();
 
-        if (timer.clockSeconds === 0) {
+        if (timer.clockTotal < 0) {
 
             clearInterval(timer.timerID);
-
-            if (timerMinutes() === 0) {
-
-                addSessionCount(timerMinutes);
-                finishSession();
-            } else if (timerMinutes() > 0) {
-
-                timer.clockSeconds = 60;
-
-                if (timer.pauseClicked) {
-
-                    decrementTimer(timerMinutes);
-                    runMinutesTimer(timerMinutes);
-                } else if (!timer.pauseClicked) {
-
-                    runMinutesTimer(timerMinutes);
-                }
-            }
+            addSessionCount(timerMinutes);
+            finishSession();
         }
     }, 1000);
-};
-
-const runMinutesTimer = (timerMinutes) => {
-
-    if (!timer.pauseClicked) {
-              
-        decrementTimer(timerMinutes);
-        timerUI.setMinutes(timerMinutes);      
-        runSecondsTimer(timerMinutes);
-
-    } else if (timer.pauseClicked) {
-
-        timerUI.setMinutes(timerMinutes);
-        runSecondsTimer(timerMinutes);
-    }
 };
 
 //Setup Event-Handlers
@@ -176,8 +136,10 @@ const setTotalSeconds = function () {
         .addEventListener('click', (event) => {
 
             console.log('at once event');
-            console.log(event);
-            timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer()) + timer.clockSeconds;
+
+            timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer());
+            timer.clockTotal = timer.totalSeconds;
+            console.log(timer.totalSeconds);
         }, {
             once: true
         });
@@ -185,20 +147,17 @@ const setTotalSeconds = function () {
 
 const skipEvent = document.getElementById('skip')
     .addEventListener('click', (event) => {
-
+        
+        runningTimer.sessionTimer = !runningTimer.sessionTimer;
+        runningTimer.breakTimer = !runningTimer.breakTimer;
         skipSession(timerQuery.getCurrentTimer());
     });
 
 const startEvent = document.getElementById('start')
     .addEventListener('click', (event) => {
 
-        if (timer.clockSeconds === 0) {
-
-            timer.clockSeconds = 60;
-            runningTimer.sessionTimer = !runningTimer.sessionTimer;
-            runningTimer.breakTimer = !runningTimer.breakTimer;
-        }
-
+        runningTimer.sessionTimer = !runningTimer.sessionTimer;
+        runningTimer.breakTimer = !runningTimer.breakTimer;
         startSession(timerQuery.getCurrentTimer());
     });
 

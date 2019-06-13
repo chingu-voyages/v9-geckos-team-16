@@ -36,8 +36,20 @@ const getBreakTimeMinutes = () => {
     }
 };
 
+const getCurrentMinutes = () => {
+
+    return timer.currentMinutes;
+};
+
+const getCurrentSeconds = () => {
+
+    return timer.currentSeconds;
+};
+
 export {
     getCurrentTimer,
     getSessionMinutes,
-    getBreakTimeMinutes
+    getBreakTimeMinutes,
+    getCurrentMinutes,
+    getCurrentSeconds
 };
