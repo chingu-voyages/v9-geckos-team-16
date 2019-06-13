@@ -1,17 +1,15 @@
-import {timer} from './timer.js';
+import {
+    timer
+} from './timer.js';
 
-let pieTime = document.getElementById('pieTime');
-let totalSeconds = 60;
-let count = parseInt(pieTime.innerText);
-let timerID = 0;
-
-const updateTimer = (percent) => {
+const updateClockFace = (percent) => {
 
     let degree = 0;
+    let totalSeconds = 60;
 
     if (percent < (totalSeconds / 2)) {
 
-        degree = 90 + (360 * percent / totalSeconds);
+        degree = 360 / 100 * percent;
         document.querySelector('.pie').style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
     } else if (percent >= (totalSeconds / 2)) {
 
@@ -20,11 +18,18 @@ const updateTimer = (percent) => {
     }
 };
 
+const updateBarTimer = (totalSeconds) => {
+    
+    console.log('at bar timer');
+    
+
+}
+
 const setMinutes = (timerMinutes) => {
 
     if (timerMinutes() >= 0) {
 
-        if (timerMinutes() == 0) {
+        if (timerMinutes() < 10) {
 
             document.getElementById('clock-minutes').innerHTML = '0' + timerMinutes();
         } else {
@@ -36,42 +41,25 @@ const setMinutes = (timerMinutes) => {
 
 const setSeconds = () => {
 
-    if (timer.seconds >= 0) {
 
-        if (timer.seconds === 60) {
+    if (timer.clockSeconds >= 0) {
+
+        if (timer.clockSeconds === 60) {
+
             document.getElementById('clock-seconds').innerHTML = '00';
-        } else if (timer.seconds < 10) {
+        } else if (timer.clockSeconds < 10) {
 
-            document.getElementById('clock-seconds').innerHTML = '0' + timer.seconds;
+            document.getElementById('clock-seconds').innerHTML = '0' + timer.clockSeconds;
         } else {
 
-            document.getElementById('clock-seconds').innerHTML = timer.seconds;
+            document.getElementById('clock-seconds').innerHTML = timer.clockSeconds;
         }
     }
-};
-
-const startPieTimer = function () {
-
-    timerID = setInterval(() => {
-
-        count += 1;
-        pieTime.innerHTML = count;
-        updateTimer(count);
-
-        if (count == totalSeconds) {
-            clearInterval(timerID);
-        }
-
-    }, 1000);
-};
-
-const stopPieTimer = function () {
-    clearInterval(timerID);
 };
 
 export {
     setMinutes,
     setSeconds,
-    startPieTimer,
-    stopPieTimer
+    updateClockFace,
+    updateBarTimer
 };

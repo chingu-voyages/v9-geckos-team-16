@@ -1,12 +1,12 @@
 import * as timerUI from './timer-ui.js';
+import * as timerQuery from './timer-queries.js';
 
-console.log(timerUI);
-
-let paused = false;
-let pauseClicked = false;
 let timer = {
 
-    seconds: 0,
+    paused: false,
+    pauseClicked: false,
+    clockCount: 0,
+    clockSeconds: 0,
     sessionCount: 0,
     breakInterval: 4,
     longBreakMinutes: 3,
@@ -40,8 +40,9 @@ const decrementTimer = (timerMinutes) => {
 const finishSession = () => {
 
     console.log('At finish sessions');
-    paused = false;
-    pauseClicked = false;
+    timer.paused = false;
+    timer.pauseClicked = false;
+    timer.clockSeconds = 60;
     document.getElementById('start').innerHTML = 'Start';
 
     let inputs = document.getElementById('timer-input').querySelectorAll('input');
@@ -74,47 +75,13 @@ const addSessionCount = (timerMinutes) => {
 const skipSession = (timerMinutes) => {
 
     clearInterval(timer.timerID);
-    addSessionCount(timerMinutes);
-
-    timer.seconds = 60;
     runningTimer.sessionTimer = !runningTimer.sessionTimer;
     runningTimer.breakTimer = !runningTimer.breakTimer;
+
+    addSessionCount(timerMinutes);
     finishSession();
-    timerUI.setMinutes(getCurrentTimer());
+    timerUI.setMinutes(timerQuery.getCurrentTimer());
     timerUI.setSeconds();
-};
-
-const getCurrentTimer = () => {
-
-    let callback;
-
-    if (runningTimer.sessionTimer) {
-
-        console.log('session');
-        callback = getSessionMinutes;
-    } else if (runningTimer.breakTimer) {
-
-        console.log('breaktime');
-        callback = getBreakTimeMinutes;
-    }
-
-    return callback;
-}
-
-const getSessionMinutes = () => {
-
-    return timer.sessionMinutes;
-};
-
-const getBreakTimeMinutes = () => {
-
-    if (timer.sessionCount % timer.breakInterval === 0) {
-
-        return timer.longBreakMinutes;
-    } else {
-
-        return timer.shortBreakMinutes;
-    }
 };
 
 const startSession = (timerMinutes) => {
@@ -122,35 +89,37 @@ const startSession = (timerMinutes) => {
     console.log(timerMinutes);
     let button = document.getElementById('start');
 
-    if (paused) {
+    if (timer.paused) {
 
         button.innerHTML = 'Start';
         pauseTimer();
-        timerUI.stopPieTimer();
-        paused = !paused;
-        pauseClicked = true;
+        timer.paused = !timer.paused;
+        timer.pauseClicked = true;
     } else {
 
         button.innerHTML = 'Pause';
         runMinutesTimer(timerMinutes);
-        timerUI.startPieTimer();
-        paused = !paused;
+        timer.paused = !timer.paused;
     }
 };
 
 const pauseTimer = () => {
 
     clearInterval(timer.timerID);
-}
+};
 
 const runSecondsTimer = (timerMinutes) => {
 
     timer.timerID = setInterval(() => {
 
-        --timer.seconds;
+        ++timer.clockCount;
+        //timerUI.updateClockFace(timer.clockCount);
+        timerUI.updateBarTimer(timer.clockCount);
+
+        --timer.clockSeconds;
         timerUI.setSeconds();
 
-        if (timer.seconds === 0) {
+        if (timer.clockSeconds === 0) {
 
             clearInterval(timer.timerID);
 
@@ -160,13 +129,13 @@ const runSecondsTimer = (timerMinutes) => {
                 finishSession();
             } else if (timerMinutes() > 0) {
 
-                timer.seconds = 60;
+                timer.clockSeconds = 60;
 
-                if (pauseClicked) {
+                if (timer.pauseClicked) {
 
                     decrementTimer(timerMinutes);
                     runMinutesTimer(timerMinutes);
-                } else if (!pauseClicked) {
+                } else if (!timer.pauseClicked) {
 
                     runMinutesTimer(timerMinutes);
                 }
@@ -177,12 +146,12 @@ const runSecondsTimer = (timerMinutes) => {
 
 const runMinutesTimer = (timerMinutes) => {
 
-    if (!pauseClicked) {
+    if (!timer.pauseClicked) {
 
         decrementTimer(timerMinutes);
         timerUI.setMinutes(timerMinutes);
         runSecondsTimer(timerMinutes);
-    } else if (pauseClicked) {
+    } else if (timer.pauseClicked) {
 
         timerUI.setMinutes(timerMinutes);
         runSecondsTimer(timerMinutes);
@@ -194,20 +163,20 @@ const runMinutesTimer = (timerMinutes) => {
 const skipEvent = document.getElementById('skip')
     .addEventListener('click', (event) => {
 
-        skipSession(getCurrentTimer());
+        skipSession(timerQuery.getCurrentTimer());
     });
 
 const startEvent = document.getElementById('start')
     .addEventListener('click', (event) => {
 
-        if (timer.seconds === 0) {
+        if (timer.clockSeconds === 0) {
 
-            timer.seconds = 60;
+            timer.clockSeconds = 60;
             runningTimer.sessionTimer = !runningTimer.sessionTimer;
             runningTimer.breakTimer = !runningTimer.breakTimer;
         }
 
-        startSession(getCurrentTimer());
+        startSession(timerQuery.getCurrentTimer());
     });
 
 const timerInputEvent = document.getElementById('timer-input')
@@ -239,5 +208,6 @@ export {
     skipEvent,
     startEvent,
     timerInputEvent,
-    timer
+    timer,
+    runningTimer
 };

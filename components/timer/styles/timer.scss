@@ -1,5 +1,14 @@
 $timer-color: #1fbb39;
 
+
+.bar {
+    margin: 10px;
+    height: 50px;
+    width: 500px;
+    background-color: $timer-color;
+}
+
+
 .pie {
     width: 300px;
     height: 300px;
@@ -23,11 +32,11 @@ $timer-color: #1fbb39;
     }
 }
 
-#pieTime {
+#clock-body {
     font-size: 3em;
     position: absolute;
-    top: 35%;
-    left: 43%;
+    top: 39%;
+    left: 29%;
     color: lighten(#000, 60%);
 }
 
