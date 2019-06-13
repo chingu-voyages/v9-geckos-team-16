@@ -2,8 +2,12 @@ import {
     timer
 } from './timer.js';
 
+let barTimer = document.querySelector('.bar');
+
 const updateClockFace = (percent) => {
 
+    //TODO - this function is still broken, only works on a 60 second count, can delete it later on if I can't figure out how to implement the clock
+    
     let degree = 0;
     let totalSeconds = 60;
 
@@ -19,16 +23,15 @@ const updateClockFace = (percent) => {
 };
 
 const updateBarTimer = (uiTimerCount) => {
-    
-    //console.log('at bar timer');
-    
-    let totalSeconds = timer.clockSeconds + (timer.sessionMinutes * 60);
-    // console.log(totalSeconds);
-    // console.log(uiTimerCount);
-    let percent = (totalSeconds - uiTimerCount) / totalSeconds * 100;
 
-    //console.log(percent);
-}
+    let percent = (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
+    barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
+};
+
+const resetBarTimer = () => {
+
+    barTimer.style.backgroundImage = 'linear-gradient(#1fbb39,#1fbb39)';
+};
 
 const setMinutes = (timerMinutes) => {
 
@@ -45,7 +48,6 @@ const setMinutes = (timerMinutes) => {
 };
 
 const setSeconds = () => {
-
 
     if (timer.clockSeconds >= 0) {
 
@@ -66,5 +68,6 @@ export {
     setMinutes,
     setSeconds,
     updateClockFace,
-    updateBarTimer
+    updateBarTimer,
+    resetBarTimer
 };

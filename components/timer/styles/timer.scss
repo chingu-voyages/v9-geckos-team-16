@@ -1,13 +1,11 @@
 $timer-color: #1fbb39;
 
-
 .bar {
     margin: 10px;
     height: 50px;
     width: 500px;
-    background-color: $timer-color;
+    background-image: linear-gradient($timer-color,$timer-color);
 }
-
 
 .pie {
     width: 300px;

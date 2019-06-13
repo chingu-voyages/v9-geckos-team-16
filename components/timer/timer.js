@@ -23,7 +23,7 @@ let runningTimer = {
 };
 
 const minutesToSeconds = (timerMinutes) => {
-    
+
     console.log(timerMinutes);
 
     return timerMinutes() * 60;
@@ -51,6 +51,9 @@ const finishSession = () => {
     timer.paused = false;
     timer.pauseClicked = false;
     timer.clockSeconds = 60;
+    timer.uiTimerCount = 0;
+    timerUI.resetBarTimer();
+    setTotalSeconds();
     document.getElementById('start').innerHTML = 'Start';
 
     let inputs = document.getElementById('timer-input').querySelectorAll('input');
@@ -124,7 +127,6 @@ const runSecondsTimer = (timerMinutes) => {
         --timer.clockSeconds;
 
         timerUI.updateBarTimer(timer.uiTimerCount);
-        //timerUI.updateClockFace(timer.uiTimerCount);
         timerUI.setSeconds();
 
         if (timer.clockSeconds === 0) {
@@ -155,10 +157,11 @@ const runSecondsTimer = (timerMinutes) => {
 const runMinutesTimer = (timerMinutes) => {
 
     if (!timer.pauseClicked) {
-
+              
         decrementTimer(timerMinutes);
-        timerUI.setMinutes(timerMinutes);
+        timerUI.setMinutes(timerMinutes);      
         runSecondsTimer(timerMinutes);
+
     } else if (timer.pauseClicked) {
 
         timerUI.setMinutes(timerMinutes);
@@ -167,18 +170,14 @@ const runMinutesTimer = (timerMinutes) => {
 };
 
 //Setup Event-Handlers
-
 const setTotalSeconds = function () {
 
     document.getElementById('start')
         .addEventListener('click', (event) => {
-            
+
             console.log('at once event');
             console.log(event);
-
             timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer()) + timer.clockSeconds;
-            console.log(timer.totalSeconds);
-
         }, {
             once: true
         });
@@ -210,6 +209,8 @@ const timerInputEvent = document.getElementById('timer-input')
 
         if (input.value < 1) {
             input.value = 1;
+        } else if (input.value > 60) {
+            input.value = 60;
         }
 
         switch (input.id) {
