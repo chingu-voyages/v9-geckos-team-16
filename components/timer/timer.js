@@ -5,8 +5,9 @@ let timer = {
 
     paused: false,
     pauseClicked: false,
-    clockCount: 0,
+    uiTimerCount: 0,
     clockSeconds: 0,
+    totalSeconds: 0,
     sessionCount: 0,
     breakInterval: 4,
     longBreakMinutes: 3,
@@ -19,6 +20,13 @@ let runningTimer = {
 
     sessionTimer: false,
     breakTimer: true
+};
+
+const minutesToSeconds = (timerMinutes) => {
+    
+    console.log(timerMinutes);
+
+    return timerMinutes() * 60;
 };
 
 const decrementTimer = (timerMinutes) => {
@@ -92,7 +100,7 @@ const startSession = (timerMinutes) => {
     if (timer.paused) {
 
         button.innerHTML = 'Start';
-        pauseTimer();
+        pauseSession();
         timer.paused = !timer.paused;
         timer.pauseClicked = true;
     } else {
@@ -103,7 +111,7 @@ const startSession = (timerMinutes) => {
     }
 };
 
-const pauseTimer = () => {
+const pauseSession = () => {
 
     clearInterval(timer.timerID);
 };
@@ -112,11 +120,11 @@ const runSecondsTimer = (timerMinutes) => {
 
     timer.timerID = setInterval(() => {
 
-        ++timer.clockCount;
-        //timerUI.updateClockFace(timer.clockCount);
-        timerUI.updateBarTimer(timer.clockCount);
-
+        ++timer.uiTimerCount;
         --timer.clockSeconds;
+
+        timerUI.updateBarTimer(timer.uiTimerCount);
+        //timerUI.updateClockFace(timer.uiTimerCount);
         timerUI.setSeconds();
 
         if (timer.clockSeconds === 0) {
@@ -159,6 +167,22 @@ const runMinutesTimer = (timerMinutes) => {
 };
 
 //Setup Event-Handlers
+
+const setTotalSeconds = function () {
+
+    document.getElementById('start')
+        .addEventListener('click', (event) => {
+            
+            console.log('at once event');
+            console.log(event);
+
+            timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer()) + timer.clockSeconds;
+            console.log(timer.totalSeconds);
+
+        }, {
+            once: true
+        });
+};
 
 const skipEvent = document.getElementById('skip')
     .addEventListener('click', (event) => {
@@ -205,6 +229,7 @@ const timerInputEvent = document.getElementById('timer-input')
     });
 
 export {
+    setTotalSeconds,
     skipEvent,
     startEvent,
     timerInputEvent,

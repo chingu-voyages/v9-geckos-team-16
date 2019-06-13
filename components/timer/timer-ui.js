@@ -18,11 +18,16 @@ const updateClockFace = (percent) => {
     }
 };
 
-const updateBarTimer = (totalSeconds) => {
+const updateBarTimer = (uiTimerCount) => {
     
-    console.log('at bar timer');
+    //console.log('at bar timer');
     
+    let totalSeconds = timer.clockSeconds + (timer.sessionMinutes * 60);
+    // console.log(totalSeconds);
+    // console.log(uiTimerCount);
+    let percent = (totalSeconds - uiTimerCount) / totalSeconds * 100;
 
+    //console.log(percent);
 }
 
 const setMinutes = (timerMinutes) => {
