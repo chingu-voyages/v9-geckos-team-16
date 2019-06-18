@@ -5,9 +5,30 @@
     <title></title>
     <meta charset="utf-8">
     <link href="/components/timer/styles/timer.css" rel="stylesheet">
+
+    <!-- Custom fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="../src/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom bootstraps-->
+    <link href="../src/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="../src/css/site.css" rel="stylesheet">
+
 </head>
 
 <body>
+
+    <!-- MAIN NAV -->
+    <ul class="main-page-nav navbar-nav ml-auto">
+        <div class="btn btn-link d-md-none rounded-circle mr-3" id="settings-button">
+            <i class="fa fa-cog"></i>
+        </div>
+    </ul>
+
+
+    <!-- TIMER elements -->
     <div class="pie degree">
         <span class="block"></span>
         <div id="clock-body">
@@ -19,19 +40,179 @@
 
     <div>
         <button type="button" id="start">Start</button>
-        <button type "button" id="skip">Skip</button>
+        <button type="button" id="skip">Skip</button>
     </div>
 
-    <div id="timer-input">
-        <h4>Session Duration</h4><input type="number" id="session-minutes" value="2" />
-        <h4>Long Break Duration</h4><input type="number" id="long-break-minutes" value="3" />
-        <h4>Short Break Duration</h4><input type="number" id="short-break-minutes" value="1" />
-        <h4>Long Break Interval</h4><input type="number" id="break-interval" value="4" />
+
+    <!-- TO-DO LIST page -->
+    <div class="todo-page" id="todo-page-slide">
+
+        <!-- To-do page - nav bar -->
+        <ul class="todo-page-nav navbar-nav ml-auto">
+
+            <div class="btn btn-link d-md-none rounded-circle mr-3">
+            </div>
+
+            <div class="btn btn-link d-md-none rounded-circle mr-3" id="todo-open-button">
+                <i class="fa fa-angle-up"></i>
+            </div>
+
+            <div class="btn btn-link d-md-none rounded-circle mr-3 space">
+            </div>
+
+            <div class="btn btn-link d-md-none rounded-circle mr-3" id="todo-edit-button">
+                <i class="fa fa-pen"></i>
+            </div>
+            <div class="btn btn-link d-md-none rounded-circle mr-3" id="todo-add-list-button">
+                <i class="fa fa-plus"></i>
+            </div>
+
+        </ul>   
+
+        <!--Page Container -->
+        <div class="container-fluid">
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <div class="col-lg-6">
+
+                    <!-- Card -->
+                    <div id="todo-list">
+
+                        <h1 class="h3 mb-2 text-gray-800">To-do List</h1>
+
+                        <div class="checkbox"><label><input type="checkbox" value="">Checkbox 1</label></div>
+                        <div class="checkbox"><label><input type="checkbox" value="">Checkbox 1</label></div>
+
+                        <div class="btn btn-link d-md-none rounded-circle mr-3" id="todo-add-task-button">
+                            <i class="fa fa-plus"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SETTINGS page -->
+    <div class="settings-page" id="settings-page-slide">
+
+        <!-- Settings page - nav bar -->
+        <ul class="settings-page-nav navbar-nav ml-auto">
+            <div class="btn btn-link d-md-none rounded-circle mr-3" id="settings-back-button">
+                <i class="fa fa-times"></i> 
+            </div>
+        </ul>
+
+        <!--Page Container -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-3 text-gray-800">Settings</h1>
+
+            <!-- Content Row -->
+            <div class="row">
+
+                <div class="col-lg-6">
+
+                    <!-- Durations -->
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Durations and Intervals</h6>
+                        </div>
+                        <div class="card-body">
+
+                            <p class="mb-4">Set how long you want your <code> Work</code> and <code> Break</code> times. </p>
+
+                            <div id="timer-input">
+
+
+                                <div class="form-group">
+                                    <label>Work Duration</label>
+                                    <div class="form-group-space"></div>
+
+                                    <input type="number" class="form-control" id="session-minutes" value="2" />
+
+                                    <label class="units">Minutes</label><br>
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label>Short Break Duration</label>
+                                    <div class="form-group-space"></div>
+                                    <input type="number" class="form-control" id="short-break-minutes" value="1" size="3" />
+                                    <label class="units">Minutes</label><br>
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <label>Long Break Duration</label>
+                                    <div class="form-group-space"></div>
+                                    <input type="number" class="form-control" id="long-break-minutes" value="3" />
+                                    <label class="units">Minutes</label><br>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Long Break Interval</label>
+                                    <div class="form-group-space"></div>
+                                    <input type="number" class="form-control" id="break-interval" value="4" />
+                                    <label class="units">Intervals</label><br>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Intervals
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Intervals</h6>
+                        </div>
+                        <div class="card-body">
+                            Use <code>.o-hidden</code> to set the overflow property of any element to hidden.
+
+                            <div id="timer-input">
+                            </div>
+
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="bar">
     </div>
 
     <script src="/components/app.js" type="module"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="../src/timer.js"></script>
+    <script src="../src/js/pages.js"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../src/vendor/jquery/jquery.min.js"></script>
+    <script src="../src/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../src/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../src/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../src/vendor/chart.js/Chart.min.js"></script>
+
+
 </body>
 </html>
