@@ -1,7 +1,9 @@
 #clock-body {
 	text-align: center;
 }
-
+#clock-buttons {
+	text-align: center;
+}
 /* Bootstrap customizations */
 
 .btn-link {
