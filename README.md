@@ -1,6 +1,6 @@
 # v9-geckos-team-16
-Add-project-description-here | Voyage-9 | https://chingu.io/
-A SIMPLE TO DO LIST FEATURE
-ALLOWS FOR CREATION AND DISPLAYING OF MULTIPLE LISTS CONTAINING TODO TASKS
-THE LISTS MUST BE NAMED AND CAN BE EDITED OR DELETED
-THE TASKS CAN ALSO BE EDITED AND DELETED 
+
+Voyage-9 | https://chingu.io/
+Pomodoro App WITH A TO-DO LIST.
+The application is partially inspired by the Momentum App. 
+The difference is it will have a Pomodoro timer instead of a normal clock in the middle.
