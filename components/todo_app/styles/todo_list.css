@@ -1,0 +1,39 @@
+#create_list_btn{
+
+	display: inline-block;
+	height: 24px;
+	width: 240px;
+	background: #FFFFFF;
+}
+
+
+.todo_list{
+	margin-top: 24px;
+	margin-bottom: 24px;
+}
+
+.list_name_inputs{
+	display: inline-block;
+	height: 24px;
+	width: 240px;
+	margin-right: 4px; 
+}
+
+.list_item_inputs{
+	display: inline-block;
+	height: 24px;
+	width: 202px;       /* 24 img, +4 +4 margins, -240 list_name_input, -border account for */
+	margin-right: 4px; 
+}
+
+.todo_icons{
+	display: inline-block;
+	height: 24px;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+
+.todo_icons:hover{
+	cursor: pointer;
+	cursor: hand;
+}

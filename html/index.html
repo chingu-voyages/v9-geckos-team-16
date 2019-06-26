@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+
+	<!-- link styles -->
+	<link rel="stylesheet" type="text/css" href="../components/todo_app/styles/todo_list.css">
+    <link href="../components/timer/styles/timer.css" rel="stylesheet">
+</head>
+<body>
+
+
+		 <div class="pie degree">
+        <span class="block"></span>
+        <div id="clock-body">
+            <span id="clock-minutes">00</span>
+            <span>:</span>
+            <span id="clock-seconds">00</span>
+        </div>
+    </div>
+
+    <div>
+        <button type="button" id="start">Start</button>
+        <button type="button" id="skip">Skip</button>
+    </div>
+
+    <div id="timer-input">
+        <h4>Session Duration</h4><input type="number" id="session-minutes" value="2" />
+        <h4>Long Break Duration</h4><input type="number" id="long-break-minutes" value="3" />
+        <h4>Short Break Duration</h4><input type="number" id="short-break-minutes" value="1" />
+        <h4>Long Break Interval</h4><input type="number" id="break-interval" value="4" />
+    </div>
+
+    <div class="bar">
+    </div>
+
+   
+
+		<!-- create a list button -->
+		<button id="create_list_btn">CREATE LIST</button>
+
+		<!-- created lists are to be appended here -->
+		<div class="lists_container">
+
+			
+			
+		</div>
+
+			
+			
+
+			
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jquery import -->
+<script type="text/javascript" src="../libs/js/jquery-3.4.1.min.js"></script>
+<!-- javascript import -->
+<script type="text/javascript" src="../components/todo_app/js/to_do_list.js"></script>
+
+<!-- timer app import -->
+ <script src="../components/timer/js/app.js" type="module"></script>
+
+
+</body>
+</html>
