@@ -1,6 +1,6 @@
 import {
     timer
-} from 'timer.js';
+} from './timer.js';
 
 let barTimer = document.querySelector('.bar');
 

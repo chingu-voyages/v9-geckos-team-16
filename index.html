@@ -4,7 +4,10 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <link href="/components/timer/styles/timer.css" rel="stylesheet">
+
+    <!-- link styles -->
+    <link rel="stylesheet" type="text/css" href="./components/todo_app/styles/todo_list.css">
+    <link href="./components/timer/styles/timer.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,7 +22,7 @@
 
     <div>
         <button type="button" id="start">Start</button>
-        <button type "button" id="skip">Skip</button>
+        <button type="button" id="skip">Skip</button>
     </div>
 
     <div id="timer-input">
@@ -32,6 +35,20 @@
     <div class="bar">
     </div>
 
-    <script src="/components/app.js" type="module"></script>
+    <!-- create a list button -->
+    <button id="create_list_btn">CREATE LIST</button>
+
+    <!-- created lists are to be appended here -->
+    <div class="lists_container">
+
+    </div>
+
+    <!-- jquery import -->
+    <script type="text/javascript" src="./libs/js/jquery-3.4.1.min.js"></script>
+    <!-- javascript import -->
+    <script type="text/javascript" src="./components/todo_app/js/to_do_list.js"></script>
+    <!-- timer app import -->
+    <script src="./components/app.js" type="module"></script>
 </body>
+
 </html>

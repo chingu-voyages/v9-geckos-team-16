@@ -1,5 +1,5 @@
-import * as timerUI from 'timer-ui.js';
-import * as timerQuery from 'timer-queries.js';
+import * as timerUI from './timer-ui.js';
+import * as timerQuery from './timer-queries.js';
 
 let timer = {
 
