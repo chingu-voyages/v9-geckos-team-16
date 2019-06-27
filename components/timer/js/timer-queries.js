@@ -1,7 +1,7 @@
 import {
     timer,
     runningTimer
-} from 'timer.js';
+} from './timer.js';
 
 const getCurrentTimer = () => {
 
