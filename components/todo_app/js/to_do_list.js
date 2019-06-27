@@ -6,8 +6,8 @@ $(document).ready(function(){
 var lists_container = $(".lists_container");
 
 // points to the list and list-item html layouts 
-var list_layout_url = "new_list.html";
-var list_item_layout_url = "new_list_item.html" 
+var list_layout_url = "html/new_list.html";
+var list_item_layout_url = "html/new_list_item.html" 
 
 
 /************************* LIST MANIPULATIONS ********************************/
@@ -157,7 +157,7 @@ lists_container.on('click', ".delete_list_item_img", function(){
 lists_container.on('click', ".check_item_img", function(){
 
 		//change the image 
-		check_item_img_src = "../images/checked.png";
+		check_item_img_src = "components/todo_app/images/checked.png";
 		$(this).attr("src", check_item_img_src);
 
 		//change the class of this list item from check to uncheck
@@ -172,7 +172,7 @@ lists_container.on('click', ".check_item_img", function(){
 lists_container.on('click', ".uncheck_item_img", function(){
 
 		//change the image 
-		uncheck_item_img_src = "../images/unchecked.png";
+		uncheck_item_img_src = "components/todo_app/images/unchecked.png";
 		$(this).attr("src", uncheck_item_img_src);
 
 		//change the class of this list item from uncheck to check

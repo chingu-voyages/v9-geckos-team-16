@@ -15,6 +15,7 @@
     <!-- CSS -->
     <link href="src/css/site.css" rel="stylesheet">
     <link href="components/timer/styles/timer.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="components/todo_app/styles/todo_list.css">
 
 </head>
 
@@ -63,7 +64,7 @@
             <div class="btn btn-link d-md-none rounded-circle mr-3" id="todo-edit-button">
                 <i class="fa fa-pen"></i>
             </div>
-            <div class="btn btn-link d-md-none rounded-circle mr-3" id="todo-add-list-button">
+            <div class="btn btn-link d-md-none rounded-circle mr-3" id="create_list_btn">
                 <i class="fa fa-plus"></i>
             </div>
 
@@ -75,21 +76,28 @@
             <!-- Content Row -->
             <div class="row">
 
-                <div class="col-lg-6">
+                <!-- created lists are to be appended here -->
+                <div class="col-lg-6 lists_container">
+
 
                     <!-- Card -->
                     <div id="todo-list">
 
                         <h1 class="h3 mb-2 text-gray-800">To-do List</h1>
 
-                        <div class="checkbox"><label><input type="checkbox" value="">Checkbox 1</label></div>
-                        <div class="checkbox"><label><input type="checkbox" value="">Checkbox 1</label></div>
-
-                        <div class="btn btn-link d-md-none rounded-circle mr-3" id="todo-add-task-button">
-                            <i class="fa fa-plus"></i>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="" />Checkbox 1
+                            </label>
                         </div>
 
+                        <div class="checkbox"><label><input type="checkbox" value="">Checkbox 1</label></div>
+
+
                     </div>
+
+
+
 
                 </div>
 
@@ -195,7 +203,16 @@
 
     <script src="components/app.js" type="module"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- timer app import
+    <script src="components/timer/js/app.js" type="module"></script> -->
+
+
+    <!-- jquery import -->
+    <script type="text/javascript" src="libs/js/jquery-3.4.1.min.js"></script>
+
+
+    <!-- javascript import -->
+    <script type="text/javascript" src="components/todo_app/js/to_do_list.js"></script>
 
     <script src="src/js/pages.js"></script>
 
