@@ -76,28 +76,32 @@
             <!-- Content Row -->
             <div class="row">
 
-                <!-- created lists are to be appended here -->
                 <div class="col-lg-6 lists_container">
+                
+                <div class="todo_list">
 
-
-                    <!-- Card -->
-                    <div id="todo-list">
-
-                        <h1 class="h3 mb-2 text-gray-800">To-do List</h1>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="" />Checkbox 1
-                            </label>
+                    <div class="todo_list_elements">
+                        
+                        <div class="list_item_col">
+                            <input type="text" class="list_name_inputs text-gray-800" placeholder="Name your list"/>
                         </div>
-
-                        <div class="checkbox"><label><input type="checkbox" value="">Checkbox 1</label></div>
-
+                        <div class="list_item_col">
+                            <i class="fa fa-1halfx fa-pen todo_icons update_list_img"></i>
+                        </div>
+                        <div class="list_item_col">
+                            <i class="fa fa-1halfx fa-trash-alt todo_icons delete_list_img"></i>
+                        </div>
 
                     </div>
 
+                    <div class=" add_list_item_img todo-add-task-button">
+                        <i class="fa fa-plus todo_icons"></i>
+                        <span class="add-task-label">Add Task</span>
+                    </div>
 
+                </div>
 
+                <!-- created lists will be appended inside here -->
 
                 </div>
 

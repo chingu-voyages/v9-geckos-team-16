@@ -62,7 +62,7 @@ $(document).ready(function () {
 	lists_container.on('click', ".update_list_img", function () {
 
 		//enable the list name input that corresponds to this list item
-		$(this).closest('list-item-row').find("input").removeAttr("disabled");
+		$(this).closest('.list-item-row').find("input").removeAttr("disabled");
 	});
 
 	// when user wishes to delete a list
@@ -110,14 +110,14 @@ $(document).ready(function () {
 	lists_container.on('click', ".update_list_item_img", function () {
 
 		//enable the list name input that corresponds to this list item
-		$(this).closest('list-item-row').find("input").removeAttr("disabled");
+		$(this).closest('.list-item-row').find("input").removeAttr("disabled");
 	});
 
 	// when user wishes to delete a list item
 	lists_container.on('click', ".delete_list_item_img", function () {
 
 		//delete this list item
-		$(this).closest('list-item-row').remove();
+		$(this).closest('.list-item-row').remove();
 	});
 
 	// when user indicates is done with a list item
