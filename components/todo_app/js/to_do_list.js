@@ -62,21 +62,21 @@ $(document).ready(function () {
 	lists_container.on('click', ".update_list_img", function () {
 
 		//enable the list name input that corresponds to this list item
-		$(this).closest('tr').find("input").removeAttr("disabled");
+		$(this).closest('list-item-row').find("input").removeAttr("disabled");
 	});
 
 	// when user wishes to delete a list
 	lists_container.on('click', ".delete_list_img", function () {
 
 		//delete this list
-		$(this).closest('table').remove();
+		$(this).closest('.todo_list').remove();
 	});
 
 	/************************* LIST ITEMS MANIPULATIONS ********************************/
 	//when user wishes to add a new item to list
 	lists_container.on('click', ".add_list_item_img", function () {
 
-		var todo_list_to_append_to = $(this).closest('table');
+		var todo_list_to_append_to = $(this).closest('.todo_list');
 
 		$.get(list_item_layout_url, function (list_item, status) {
 
@@ -110,14 +110,14 @@ $(document).ready(function () {
 	lists_container.on('click', ".update_list_item_img", function () {
 
 		//enable the list name input that corresponds to this list item
-		$(this).closest('tr').find("input").removeAttr("disabled");
+		$(this).closest('list-item-row').find("input").removeAttr("disabled");
 	});
 
 	// when user wishes to delete a list item
 	lists_container.on('click', ".delete_list_item_img", function () {
 
 		//delete this list item
-		$(this).closest('tr').remove();
+		$(this).closest('list-item-row').remove();
 	});
 
 	// when user indicates is done with a list item
