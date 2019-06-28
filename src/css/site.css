@@ -103,3 +103,27 @@ body {
 
     font-size: 24px;
 }
+
+#timer-input .units {
+	order: 3;
+	width: 65px;
+	max-width: 65px;
+	margin-left: 8px;
+	margin-bottom: 0px;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+#timer-input .form-control {
+    width: 70px;
+}
+
+#timer-input label {
+	margin-bottom: 0px;
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}

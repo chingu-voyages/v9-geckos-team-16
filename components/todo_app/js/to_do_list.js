@@ -124,10 +124,12 @@ $(document).ready(function () {
 	lists_container.on('click', ".check_item_img", function () {
 
 		//change the image 
-		check_item_img_src = `${component_base_url}images/checked.png`;
-		$(this).attr("src", check_item_img_src);
+		// check_item_img_src = `${component_base_url}images/checked.png`;
+		// $(this).attr("src", check_item_img_src);
 
 		//change the class of this list item from check to uncheck
+		$(this).removeClass("fas fa-check-circle");
+		$(this).addClass("far fa-circle");
 		$(this).removeClass("check_item_img");
 		$(this).addClass("uncheck_item_img");
 	});
@@ -136,10 +138,12 @@ $(document).ready(function () {
 	lists_container.on('click', ".uncheck_item_img", function () {
 
 		//change the image 
-		uncheck_item_img_src = `${component_base_url}images/unchecked.png`;
-		$(this).attr("src", uncheck_item_img_src);
+		// uncheck_item_img_src = `${component_base_url}images/unchecked.png`;
+		// $(this).attr("src", uncheck_item_img_src);
 
 		//change the class of this list item from uncheck to check
+		$(this).removeClass("far fa-circle");
+		$(this).addClass("fas fa-check-circle");
 		$(this).removeClass("uncheck_item_img");
 		$(this).addClass("check_item_img");
 	});
