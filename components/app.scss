@@ -1,7 +1,3 @@
-html{
-    background-clip: border-box;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: cover;
-}
+@import './appBackground/styles/appBackground';
+@import './appQuotes/styles/appQuotes';
+@import './timer/styles/timer';

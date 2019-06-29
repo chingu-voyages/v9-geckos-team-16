@@ -1,6 +1,7 @@
 import * as timerUI from './timer-ui.js';
 import * as timerQuery from './timer-queries.js';
-import * as appBackground from '../../appBackground/appBackground.js';
+import * as appBackground from '../../appBackground/js/appBackground.js';
+import * as appQuote from '../../appQuotes/js/quotes.js';
 
 let timer = {
 
@@ -48,6 +49,7 @@ const finishSession = (timerMinutes) => {
     setTotalSeconds();
     document.getElementById('start').innerHTML = 'Start';
     appBackground.getBackgroundImage();
+    appQuote.getRandomQuote();
 
     let inputs = document.getElementById('timer-input').querySelectorAll('input');
 
