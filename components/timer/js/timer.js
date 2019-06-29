@@ -1,5 +1,6 @@
 import * as timerUI from './timer-ui.js';
 import * as timerQuery from './timer-queries.js';
+import * as appBackground from '../../appBackground/appBackground.js';
 
 let timer = {
 
@@ -46,6 +47,7 @@ const finishSession = (timerMinutes) => {
     timerUI.resetBarTimer();
     setTotalSeconds();
     document.getElementById('start').innerHTML = 'Start';
+    appBackground.getBackgroundImage();
 
     let inputs = document.getElementById('timer-input').querySelectorAll('input');
 
