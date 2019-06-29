@@ -27,27 +27,25 @@ let runningTimer = {
 
 const minutesToSeconds = (timerMinutes) => {
 
-    console.log(timerMinutes);
-
     return timerMinutes() * 60;
 };
 
 const finishSession = (timerMinutes) => {
 
     console.log('At finish sessions');
-    timer.paused = false;
-    timer.uiTimerCount = 0;
-    timer.clockTotal = 0;
-    timer.totalSeconds = 0;
-    timer.currentMinutes = 0;
-    timer.currentSeconds = 0;
-
     addSessionCount(timerMinutes);
     runningTimer.sessionTimer = !runningTimer.sessionTimer;
     runningTimer.breakTimer = !runningTimer.breakTimer;
+
+    //reset all counters
+    timer.paused = false;
+    timer.uiTimerCount = 0;
+    timer.currentMinutes = 0;
+    timer.currentSeconds = 0;
+
+    document.getElementById('start').textContent = 'Start';
     timerUI.resetBarTimer();
-    setTotalSeconds();
-    document.getElementById('start').innerHTML = 'Start';
+    setStartingTime();
     appBackground.getBackgroundImage();
     appQuote.showQuote();
 
@@ -137,22 +135,15 @@ const runSecondsTimer = (timerMinutes) => {
     }, 1000);
 };
 
-//Setup Event-Handlers
-const setTotalSeconds = function () {
+const setStartingTime = function () {
 
-    document.getElementById('start')
-        .addEventListener('click', (event) => {
-
-            console.log('at trigger-once event');
-
-            timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer());
-            timer.clockTotal = timer.totalSeconds;
-            console.log(timer.totalSeconds);
-        }, {
-            once: true
-        });
+    timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer());
+    timer.clockTotal = timer.totalSeconds;
+    timerUI.setMinutes(timerQuery.getCurrentTimer());
+    timerUI.setSeconds(timer.currentSeconds);
 };
 
+//Setup Event-Handlers
 const skipEvent = function () {
 
     document.getElementById('skip')
@@ -161,6 +152,7 @@ const skipEvent = function () {
             skipSession(timerQuery.getCurrentTimer());
         });
 };
+
 const startEvent = function () {
 
     document.getElementById('start')
@@ -169,8 +161,9 @@ const startEvent = function () {
             startSession(timerQuery.getCurrentTimer());
         });
 };
+
 const timerInputEvent = function () {
-    
+
     document.getElementById('timer-input')
         .addEventListener('change', (event) => {
 
@@ -198,8 +191,9 @@ const timerInputEvent = function () {
             }
         });
 };
+
 export {
-    setTotalSeconds,
+    setStartingTime,
     skipEvent,
     startEvent,
     timerInputEvent,

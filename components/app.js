@@ -1,4 +1,3 @@
-import * as TimerComponent from './timer/js/timer.js';
 import * as TimerUI from './timer/js/timer-ui.js';
 import * as AppBackground from './appBackground/js/appBackground.js';
 import * as AppQuote from './appQuotes/js/quotes.js';

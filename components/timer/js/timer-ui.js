@@ -3,7 +3,7 @@ import {
     skipEvent,
     startEvent,
     timerInputEvent,
-    setTotalSeconds
+    setStartingTime
 } from './timer.js';
 
 const updateClockFace = (percent) => {
@@ -63,7 +63,7 @@ const setSeconds = (seconds) => {
         if (seconds === 60) {
 
             document.getElementById('clock-seconds').innerHTML = '00';
-        } else if (timer.clockTotal < 10) {
+        } else if (seconds < 10) {
 
             document.getElementById('clock-seconds').innerHTML = '0' + seconds;
         } else {
@@ -87,8 +87,9 @@ const renderTimer = () => {
             container.firstChild.remove();
         }
 
+        //register events after adding the HTML elements to the DOM
         container.append(response.querySelector('div'));
-        setTotalSeconds();
+        setStartingTime();
         startEvent();
         skipEvent();
         timerInputEvent();
