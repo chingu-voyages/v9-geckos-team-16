@@ -1,8 +1,10 @@
 import {
-    timer
+    timer,
+    skipEvent,
+    startEvent,
+    timerInputEvent,
+    setTotalSeconds
 } from './timer.js';
-
-let barTimer = document.querySelector('.bar');
 
 const updateClockFace = (percent) => {
 
@@ -25,6 +27,7 @@ const updateClockFace = (percent) => {
 const updateBarTimer = (uiTimerCount) => {
 
     let percent = (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
+    let barTimer = document.querySelector('.bar');
     
     if (percent > 50) {
         barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
@@ -35,7 +38,7 @@ const updateBarTimer = (uiTimerCount) => {
 
 const resetBarTimer = () => {
 
-    barTimer.style.backgroundImage = 'linear-gradient(#1fbb39,#1fbb39)';
+    document.querySelector('.bar').style.backgroundImage = 'linear-gradient(#1fbb39,#1fbb39)';
 };
 
 const setMinutes = (callback) => {
@@ -70,10 +73,37 @@ const setSeconds = (seconds) => {
     }
 };
 
+const renderTimer = () => {
+
+    let request = new XMLHttpRequest();
+
+    request.addEventListener('load', () => {
+
+        let response = request.response;
+        let container = document.getElementById('timer-container');
+        
+        //remove all children first before appending
+        while (container.firstChild) {
+            container.firstChild.remove();
+        }
+
+        container.append(response.querySelector('div'));
+        setTotalSeconds();
+        startEvent();
+        skipEvent();
+        timerInputEvent();
+    });
+
+    request.open('get','./components/timer/html/timer.html',true);
+    request.responseType = 'document';
+    request.send();
+};
+
 export {
     setMinutes,
     setSeconds,
     updateClockFace,
     updateBarTimer,
-    resetBarTimer
+    resetBarTimer,
+    renderTimer
 };

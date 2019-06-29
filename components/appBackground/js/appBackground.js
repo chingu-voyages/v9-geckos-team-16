@@ -18,7 +18,6 @@ const getBackgroundImage = () => {
     request.addEventListener('load', () => {
 
         let response = JSON.parse(request.response);
-        console.log(response);
         document.querySelector('html').style.backgroundImage = `url(${response.urls.regular})`;
     });
     request.open('get', `https://api.unsplash.com/photos/random/?query=${category}&orientation=landscape`, true);
