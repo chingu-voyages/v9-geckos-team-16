@@ -45,10 +45,10 @@ const setMinutes = (callback) => {
 
         if (minutes < 10) {
 
-            document.getElementById('clock-minutes').innerHTML = '0' + minutes;
+            document.getElementById('clock-minutes').textContent = '0' + minutes;
         } else {
 
-            document.getElementById('clock-minutes').innerHTML = minutes;
+            document.getElementById('clock-minutes').textContent = minutes;
         }
     }
 };

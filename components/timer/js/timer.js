@@ -49,7 +49,7 @@ const finishSession = (timerMinutes) => {
     setTotalSeconds();
     document.getElementById('start').innerHTML = 'Start';
     appBackground.getBackgroundImage();
-    appQuote.getRandomQuote();
+    appQuote.showQuote();
 
     let inputs = document.getElementById('timer-input').querySelectorAll('input');
 
@@ -100,12 +100,12 @@ const startSession = (timerMinutes) => {
 
     if (timer.paused) {
 
-        button.innerHTML = 'Start';
+        button.textContent = 'Start';
         pauseSession();
         timer.paused = !timer.paused;
     } else {
 
-        button.innerHTML = 'Pause';
+        button.textContent = 'Pause';
         runSecondsTimer(timerMinutes);
         timer.paused = !timer.paused;
     }

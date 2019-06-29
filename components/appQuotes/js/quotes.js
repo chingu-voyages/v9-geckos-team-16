@@ -23,12 +23,30 @@ let quotes = [
     'Great minds discuss ideas; average minds discuss events; small minds discuss people.'
 ];
 
-const getRandomQuote = () => {
+const showQuote = () => {
+    
+    let request = new XMLHttpRequest();
 
-    let index = Math.floor(Math.random() * Math.floor(22));
-    console.log(quotes[index]);  
+    request.addEventListener('load', () => {
+
+        let response = request.response;
+        let container = document.getElementById('quote-container');
+        
+        //remove all children first before appending
+        while (container.firstChild) {
+            container.firstChild.remove();
+        }
+
+        let index = Math.floor(Math.random() * Math.floor(quotes.length));
+        container.append(response.querySelector('blockquote'));
+        container.querySelector('blockquote').textContent = quotes[index];
+    });
+
+    request.open('get','./components/appQuotes/html/appQuotes.html',true);
+    request.responseType = 'document';
+    request.send();
 };
 
 export {
-    getRandomQuote
+    showQuote
 };
