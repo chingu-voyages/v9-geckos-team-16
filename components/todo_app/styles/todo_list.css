@@ -291,6 +291,9 @@
 
 	transition: 0.15s;
 }
+.todo-add-task-button:hover {
+    color: #ddd;
+}
 
 .add-task-label {
     margin-left: 12px;
