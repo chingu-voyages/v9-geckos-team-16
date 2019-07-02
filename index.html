@@ -13,28 +13,33 @@
     <link href="src/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- link styles -->
-    <link href="src/css/site.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./components/todo_app/styles/todo_list.css">
     <link href="./components/timer/styles/timer.css" rel="stylesheet">
     <link href="./components/app.css" rel="stylesheet">
+    <link href="src/css/site.css" rel="stylesheet">
+
+    <!-- Page level plugins -->
+    <script src="src/vendor/chart.js/Chart.min.js"></script>
 
 </head>
 
 <body>
+
+    <!-- MAIN NAV -->
+    <ul class="main-page-nav navbar-nav ml-auto">
+        <div class="btn btn-link mr-3" id="settings-button">
+            <i class="fa fa-cog"></i>
+        </div>
+    </ul>
+
+
     <div class="container">
-
-        <!-- MAIN NAV -->
-        <ul class="main-page-nav navbar-nav ml-auto">
-            <div class="btn btn-link mr-3" id="settings-button">
-                <i class="fa fa-cog"></i>
-            </div>
-        </ul>
-
 
         <!-- TIMER elements -->
 
         <div id="timer-container"></div>
 
+        <div style="clear:both;"></div>
 
         <div id="quote-container"></div>
 
@@ -147,7 +152,6 @@
 
     <!-- SETTINGS page -->
     <div class="settings-page" id="settings-page-slide">
-    <div class="container">
 
         <!-- Settings page - nav bar -->
         <ul class="settings-page-nav navbar-nav ml-auto">
@@ -155,6 +159,8 @@
                 <i class="fa fa-times"></i> 
             </div>
         </ul>
+
+    <div class="container">
 
         <!--Page Container -->
         <div class="container-fluid">
@@ -257,9 +263,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="src/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="src/vendor/chart.js/Chart.min.js"></script>
 
 
 </body>

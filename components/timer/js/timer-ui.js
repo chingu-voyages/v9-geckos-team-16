@@ -1,5 +1,6 @@
 import {
     timer,
+    runningTimer,
     skipEvent,
     startEvent,
     timerInputEvent,
@@ -16,11 +17,11 @@ const updateClockFace = (percent) => {
     if (percent < (totalSeconds / 2)) {
 
         degree = 360 / 100 * percent;
-        document.querySelector('.pie').style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
+        document.querySelector('.pie').style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),linear-gradient(0deg, white 50%, transparent 50%)`;
     } else if (percent >= (totalSeconds / 2)) {
 
         degree = -90 + (360 * percent / totalSeconds);
-        document.querySelector('.pie').style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, #1fbb39 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
+        document.querySelector('.pie').style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, tomato 50%),linear-gradient(0deg, white 50%, transparent 50%)`;
     }
 };
 
@@ -30,15 +31,25 @@ const updateBarTimer = (uiTimerCount) => {
     let barTimer = document.querySelector('.bar');
     
     if (percent > 50) {
-        barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
+        barTimer.style.backgroundImage = `linear-gradient(to top,tomato ${percent}%,transparent ${100 - percent}%)`;
     } else {
-        barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100-percent}%,#1fbb39 ${percent}% )`;
+        barTimer.style.backgroundImage = `linear-gradient(to bottom,transparent ${100-percent}%,tomato ${percent}% )`;
     } 
 };
 
 const resetBarTimer = () => {
 
-    document.querySelector('.bar').style.backgroundImage = 'linear-gradient(#1fbb39,#1fbb39)';
+    document.querySelector('.bar').style.backgroundImage = 'linear-gradient(tomato,tomato)';
+    
+    // Tells the user if they should be working or having a break
+    if (runningTimer.sessionTimer) {
+    document.getElementById('timer-status').textContent = 'Time to work';
+        console.log('at session');
+    } else if (runningTimer.breakTimer) {
+    document.getElementById('timer-status').textContent = 'Have a break';
+        console.log('at breaktime');
+    }
+
 };
 
 const setMinutes = (callback) => {
