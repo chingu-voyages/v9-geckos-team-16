@@ -32,7 +32,6 @@ const minutesToSeconds = (timerMinutes) => {
 
 const finishSession = (timerMinutes) => {
 
-    console.log('At finish sessions');
     addSessionCount(timerMinutes);
     runningTimer.sessionTimer = !runningTimer.sessionTimer;
     runningTimer.breakTimer = !runningTimer.breakTimer;
@@ -46,6 +45,7 @@ const finishSession = (timerMinutes) => {
     document.getElementById('start').textContent = 'Start';
     timerUI.resetBarTimer();
     setStartingTime();
+
     appBackground.getBackgroundImage();
     appQuote.showQuote();
 
@@ -80,7 +80,6 @@ const addSessionCount = (timerMinutes) => {
 const skipSession = (timerMinutes) => {
 
     clearInterval(timer.timerID);
-
     finishSession(timerMinutes);
     timerUI.setMinutes(timerQuery.getCurrentTimer());
     timerUI.setSeconds(timer.currentSeconds);
@@ -92,7 +91,6 @@ const startSession = (timerMinutes) => {
 
     timer.currentMinutes = Math.floor(timer.clockTotal / 60);
     timer.currentSeconds = timer.clockTotal % 60;
-
     timerUI.setMinutes(timerQuery.getCurrentMinutes);
     timerUI.setSeconds(timer.currentSeconds);
 
@@ -126,6 +124,7 @@ const runSecondsTimer = (timerMinutes) => {
         timerUI.setMinutes(timerQuery.getCurrentMinutes);
         timerUI.setSeconds(timer.currentSeconds);
         timerUI.updateBarTimer(timer.uiTimerCount);
+        timerUI.updateClockFace(timer.uiTimerCount);
 
         if (timer.clockTotal < 0) {
 

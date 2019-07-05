@@ -8,18 +8,25 @@ import {
 
 const updateClockFace = (uiTimerCount) => {
 
-    //base is percentage per degree: 0.27777% per degree 
+    //percentRatio is percentage per degree: 0.277777777777778% per degree 
     let percent = (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
-    let base = 0.277777777777778;
+    let percentRatio = 0.277777777777778;
     let pieTimer = document.querySelector('.pie');
-    let degree = percent / base;
- 
-    if (percent > 50) {
-        
-        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
-    } else {
+    let degree = percent / percentRatio;
 
-        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, #1fbb39 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
+    if (percent < 50) {
+
+        degree += 90;
+        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),
+        linear-gradient(90deg, white 50%, transparent 50%)`;
+    } else if ( percent === 50) {
+
+        pieTimer.style.backgroundImage = `linear-gradient(90deg, white 50%, transparent 50%)`;
+    }
+    else {
+        degree -= 90;
+        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, green 50%),
+        linear-gradient(90deg, white 50%, transparent 50%)`;
     }
 };
 
@@ -27,19 +34,20 @@ const updateBarTimer = (uiTimerCount) => {
 
     let percent = (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
     let barTimer = document.querySelector('.bar');
-    
+
     if (percent > 50) {
-        
+
         barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
     } else {
-        
-        barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100-percent}%,#1fbb39 ${percent}% )`;
-    } 
+
+        barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100 - percent}%,#1fbb39 ${percent}% )`;
+    }
 };
 
 const resetBarTimer = () => {
 
     document.querySelector('.bar').style.backgroundImage = 'linear-gradient(#1fbb39,#1fbb39)';
+    document.querySelector('.degree').style.backgroundImage = `background-image: none`;
 };
 
 const setMinutes = (callback) => {
@@ -82,7 +90,7 @@ const renderTimer = () => {
 
         let response = request.response;
         let container = document.getElementById('timer-container');
-        
+
         //remove all children first before appending
         while (container.firstChild) {
             container.firstChild.remove();
@@ -96,7 +104,7 @@ const renderTimer = () => {
         timerInputEvent();
     });
 
-    request.open('get','./components/timer/html/timer.html',true);
+    request.open('get', './components/timer/html/timer.html', true);
     request.responseType = 'document';
     request.send();
 };
