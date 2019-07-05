@@ -6,21 +6,20 @@ import {
     setStartingTime
 } from './timer.js';
 
-const updateClockFace = (percent) => {
+const updateClockFace = (uiTimerCount) => {
 
-    //TODO - this function is still broken, only works on a 60 second count, can delete it later on if I can't figure out how to implement the clock
-    
-    let degree = 0;
-    let totalSeconds = 60;
+    //base is percentage per degree: 0.27777% per degree 
+    let percent = (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
+    let base = 0.277777777777778;
+    let pieTimer = document.querySelector('.pie');
+    let degree = percent / base;
+ 
+    if (percent > 50) {
+        
+        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
+    } else {
 
-    if (percent < (totalSeconds / 2)) {
-
-        degree = 360 / 100 * percent;
-        document.querySelector('.pie').style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
-    } else if (percent >= (totalSeconds / 2)) {
-
-        degree = -90 + (360 * percent / totalSeconds);
-        document.querySelector('.pie').style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, #1fbb39 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
+        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, #1fbb39 50%),linear-gradient(90deg, white 50%, transparent 50%)`;
     }
 };
 
@@ -30,8 +29,10 @@ const updateBarTimer = (uiTimerCount) => {
     let barTimer = document.querySelector('.bar');
     
     if (percent > 50) {
+        
         barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
     } else {
+        
         barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100-percent}%,#1fbb39 ${percent}% )`;
     } 
 };
