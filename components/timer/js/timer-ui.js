@@ -9,24 +9,26 @@ import {
 const updateClockFace = (uiTimerCount) => {
 
     //percentRatio is percentage per degree: 0.277777777777778% per degree 
-    let percent = (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
+    let percent = 100 - (timer.totalSeconds - uiTimerCount) / timer.totalSeconds * 100;
     let percentRatio = 0.277777777777778;
-    let pieTimer = document.querySelector('.pie');
+    let pieTimer = document.querySelector('.degree');
     let degree = percent / percentRatio;
+    let clockHandColor = '#1fbb39';
 
     if (percent < 50) {
 
         degree += 90;
-        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, white 50%),
-        linear-gradient(90deg, white 50%, transparent 50%)`;
+        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, ${clockHandColor} 50%),
+        linear-gradient(90deg, ${clockHandColor} 50%, transparent 50%)`;
     } else if ( percent === 50) {
 
-        pieTimer.style.backgroundImage = `linear-gradient(90deg, white 50%, transparent 50%)`;
+        pieTimer.style.backgroundImage = `linear-gradient(90deg, ${clockHandColor} 50%, transparent 50%)`;
     }
     else {
+        
         degree -= 90;
-        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, green 50%),
-        linear-gradient(90deg, white 50%, transparent 50%)`;
+        pieTimer.style.backgroundImage = `linear-gradient(${degree}deg, transparent 50%, #ffffff 50%),
+        linear-gradient(90deg, ${clockHandColor} 50%, transparent 50%)`;
     }
 };
 
@@ -40,7 +42,7 @@ const updateBarTimer = (uiTimerCount) => {
         barTimer.style.backgroundImage = `linear-gradient(to right,#1fbb39 ${percent}%,#ffffff ${100 - percent}%)`;
     } else {
 
-        barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100 - percent}%,#1fbb39 ${percent}% )`;
+        barTimer.style.backgroundImage = `linear-gradient(to left,#ffffff ${100 - percent}%,#1fbb39 ${percent}%)`;
     }
 };
 
