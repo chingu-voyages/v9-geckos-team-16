@@ -36,7 +36,7 @@ const updateClockFace = (uiTimerCount) => {
 
 const resetTimerUI = () => {
 
-    document.querySelector('.degree').style.backgroundImage = `background-image: none`;
+    document.querySelector('.degree').style.backgroundImage = `none`;
 };
 
 const setMinutes = (callback) => {

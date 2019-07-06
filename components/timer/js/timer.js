@@ -30,6 +30,44 @@ const minutesToSeconds = (timerMinutes) => {
     return timerMinutes() * 60;
 };
 
+const updateTimerInputs = (input) => {
+
+    let changedInput = '';
+    let keys = Object.keys(timer);
+    
+    switch (input.id) {
+        case 'long-break-minutes':
+
+            timer.longBreakMinutes = input.value;
+            changedInput = keys.find(key => key === 'longBreakMinutes');
+            break;
+        case 'short-break-minutes':
+
+            timer.shortBreakMinutes = input.value;
+            changedInput = keys.find(key => key === 'shortBreakMinutes');
+            break;
+        case 'session-minutes':
+
+            timer.sessionMinutes = input.value;
+            changedInput = keys.find(key => key === 'sessionMinutes');
+            break;
+        case 'break-interval':
+
+            timer.breakInterval = input.value;
+            changedInput = keys.find(key => key === 'breakInterval');
+            break;
+    }
+
+    let currentTimer = timerQuery.getCurrentTimer();
+    if (timer[changedInput] === currentTimer()) {
+
+        clearInterval(timer.timerID);
+        timerUI.resetTimerUI();
+        resetTimerCounter();
+        setStartingTime();
+    }
+};
+
 const finishSession = (timerMinutes) => {
 
     addSessionCount(timerMinutes);
@@ -37,13 +75,8 @@ const finishSession = (timerMinutes) => {
     runningTimer.breakTimer = !runningTimer.breakTimer;
 
     //reset all counters
-    timer.paused = false;
-    timer.uiTimerCount = 0;
-    timer.currentMinutes = 0;
-    timer.currentSeconds = 0;
-
-    document.getElementById('start').textContent = 'Start';
     timerUI.resetTimerUI();
+    resetTimerCounter();
     setStartingTime();
 
     appBackground.getBackgroundImage();
@@ -53,27 +86,16 @@ const finishSession = (timerMinutes) => {
 
     for (let index = 0; index < inputs.length; index++) {
 
-        const element = inputs[index];
-        switch (element.id) {
-            case 'session-minutes':
-                timer.sessionMinutes = element.value;
-                break;
-            case 'long-break-minutes':
-                timer.longBreakMinutes = element.value;
-                break;
-            case 'short-break-minutes':
-                timer.shortBreakMinutes = element.value;
-                break;
-        }
+        const input = inputs[index];
+        updateTimerInputs(input);
     }
 };
 
 const addSessionCount = (timerMinutes) => {
 
     if (timerMinutes.name === 'getSessionMinutes') {
+
         ++timer.sessionCount;
-        console.log('added session count');
-        console.log(timer.sessionCount);
     }
 };
 
@@ -133,7 +155,16 @@ const runSecondsTimer = (timerMinutes) => {
     }, 1000);
 };
 
-const setStartingTime = function () {
+const resetTimerCounter = () => {
+    
+    document.getElementById('start').textContent = 'Start';
+    timer.paused = false;
+    timer.uiTimerCount = 0;
+    timer.currentMinutes = 0;
+    timer.currentSeconds = 0;
+};
+
+const setStartingTime = () => {
 
     timer.totalSeconds = minutesToSeconds(timerQuery.getCurrentTimer());
     timer.clockTotal = timer.totalSeconds;
@@ -142,7 +173,7 @@ const setStartingTime = function () {
 };
 
 //Setup Event-Handlers
-const skipEvent = function () {
+const skipEvent = () => {
 
     document.getElementById('skip')
         .addEventListener('click', (event) => {
@@ -151,7 +182,7 @@ const skipEvent = function () {
         });
 };
 
-const startEvent = function () {
+const startEvent = () => {
 
     document.getElementById('start')
         .addEventListener('click', (event) => {
@@ -160,7 +191,7 @@ const startEvent = function () {
         });
 };
 
-const timerInputEvent = function () {
+const timerInputEvent = () => {
 
     document.getElementById('timer-input')
         .addEventListener('change', (event) => {
@@ -173,20 +204,7 @@ const timerInputEvent = function () {
                 input.value = 60;
             }
 
-            switch (input.id) {
-                case 'long-break-minutes':
-                    timer.longBreakMinutes = input.value;
-                    break;
-                case 'short-break-minutes':
-                    timer.shortBreakMinutes = input.value;
-                    break;
-                case 'session-minutes':
-                    timer.sessionMinutes = input.value;
-                    break;
-                case 'break-interval':
-                    timer.breakInterval = input.value;
-                    break;
-            }
+            updateTimerInputs(input);
         });
 };
 
