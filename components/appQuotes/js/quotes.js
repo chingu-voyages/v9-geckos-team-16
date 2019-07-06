@@ -20,7 +20,9 @@ let quotes = [
     'Always remember that you are absolutely unique. Just like everyone else.',
     'Don\'t let yesterday take up too much of today.',
     'You learn more from failure than success.',
-    'Great minds discuss ideas; average minds discuss events; small minds discuss people.'
+    'Great minds discuss ideas; average minds discuss events; small minds discuss people.',
+    'It\'s not what you look at that matters, it\'s what you see.',
+    'The three ways to gain wisdom: Through reflection, which is the noblest. Through imitation, which is the easiest. And through experience, which is the bitterest.'
 ];
 
 const showQuote = () => {
