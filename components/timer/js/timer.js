@@ -43,7 +43,7 @@ const finishSession = (timerMinutes) => {
     timer.currentSeconds = 0;
 
     document.getElementById('start').textContent = 'Start';
-    timerUI.resetBarTimer();
+    timerUI.resetTimerUI();
     setStartingTime();
 
     appBackground.getBackgroundImage();
@@ -123,7 +123,6 @@ const runSecondsTimer = (timerMinutes) => {
 
         timerUI.setMinutes(timerQuery.getCurrentMinutes);
         timerUI.setSeconds(timer.currentSeconds);
-        timerUI.updateBarTimer(timer.uiTimerCount);
         timerUI.updateClockFace(timer.uiTimerCount);
 
         if (timer.clockTotal < 0) {
