@@ -9,11 +9,9 @@ const getCurrentTimer = () => {
 
     if (runningTimer.sessionTimer) {
 
-        console.log('at session');
         callback = getSessionMinutes;
     } else if (runningTimer.breakTimer) {
 
-        console.log('at breaktime');
         callback = getBreakTimeMinutes;
     }
 

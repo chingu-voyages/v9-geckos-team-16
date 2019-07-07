@@ -11,10 +11,10 @@ const getBackgroundImage = () => {
         'mountains',
         'eagle'
     ];
-
-    let category = searchTerm[Math.floor(Math.random() * Math.floor(9))];
-    
+    let index = Math.floor(Math.random() * Math.floor(9));
+    let category = searchTerm[index];
     let request = new XMLHttpRequest();
+    
     request.addEventListener('load', () => {
 
         let response = JSON.parse(request.response);
