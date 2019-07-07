@@ -51,6 +51,8 @@ $(document).ready(function () {
 
 				//disable the input
 				$(this).attr('disabled', 'disabled');
+				$(this).closest('.todo_list_elements').find(".update_list_img").removeClass("fa-check");
+				$(this).closest('.todo_list_elements').find(".update_list_img").addClass("fa-pen");
 			} else {
 
 				$(this).attr("placeholder", "Name is too short").val("");
@@ -61,8 +63,31 @@ $(document).ready(function () {
 	// when user wishes to update list name  
 	lists_container.on('click', ".update_list_img", function () {
 
-		//enable the list name input that corresponds to this list item
-		$(this).closest('.list-item-row').find("input").removeAttr("disabled");
+
+		if ($(this).hasClass("fa-pen")) {
+
+			//enable the list name input that corresponds to this list item
+			$(this).removeClass("fa-pen");
+			$(this).addClass("fa-check");
+			$(this).closest('.todo_list_elements').find("input").removeAttr("disabled");
+			$(this).closest('.todo_list_elements').find("input").focus();
+
+		} else {
+			// get the list item
+			var list_name = $(this).closest(".todo_list_elements").find("input").val();
+
+			//	check if something has been entered
+			if (list_name.length > 3) {	
+				console.log("list_name.length > 3");
+				//disable the input
+				$(this).closest('.todo_list_elements').find("input").attr('disabled', 'disabled');
+				$(this).removeClass("fa-check");
+				$(this).addClass("fa-pen");
+			} else {
+				$(this).attr("placeholder", "Name is too short").val("");
+			}
+		}
+
 	});
 
 	// when user wishes to delete a list
@@ -102,6 +127,8 @@ $(document).ready(function () {
 
 				//disable the input
 				$(this).attr('disabled', 'disabled');
+				$(this).closest('.list-item-row').find(".update_list_item_img").removeClass("fa-check");
+				$(this).closest('.list-item-row').find(".update_list_item_img").addClass("fa-pen");
 			}
 		}
 	});
@@ -109,8 +136,33 @@ $(document).ready(function () {
 	// when user wishes to update a list ITEM
 	lists_container.on('click', ".update_list_item_img", function () {
 
-		//enable the list name input that corresponds to this list item
-		$(this).closest('.list-item-row').find("input").removeAttr("disabled");
+
+		//check if the item is in "edit mode" or not
+		if ($(this).hasClass("fa-pen")) {
+
+			//enable the list name input that corresponds to this list item
+			$(this).removeClass("fa-pen");
+			$(this).addClass("fa-check");
+			$(this).closest('.list-item-row').find("input").removeAttr("disabled");
+			$(this).closest('.list-item-row').find("input").focus();
+
+		} else {
+			// get the list item
+			var list_item = $(this).closest('.list-item-row').find("input").val();
+
+			//	check if something has been entered
+			if (list_item.length > 0) {	
+				console.log("list_item.length > 0");
+
+				//disable the input
+				$(this).closest('.list-item-row').find("input").attr('disabled', 'disabled');
+				$(this).removeClass("fa-check");
+				$(this).addClass("fa-pen");
+			}
+		}
+
+
+
 	});
 
 	// when user wishes to delete a list item

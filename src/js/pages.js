@@ -31,14 +31,14 @@ $(document).ready(function(){
 			$(".delete_list_img").removeClass("show");
 			$(".update_list_item_img").removeClass("show");
 			$(".delete_list_item_img").removeClass("show");
-			$(".todo-add-task-button").removeClass("hide");
+			$(".todo-add-task-button").addClass("hide");
 		} else {
 			$("#todo-edit-button").addClass("edit-on");
 			$(".update_list_img").addClass("show");
 			$(".delete_list_img").addClass("show");
 			$(".update_list_item_img").addClass("show");
 			$(".delete_list_item_img").addClass("show");
-			$(".todo-add-task-button").addClass("hide");
+			$(".todo-add-task-button").removeClass("hide");
 		};
 	});
 
