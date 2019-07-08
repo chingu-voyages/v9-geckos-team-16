@@ -58,8 +58,9 @@ const updateTimerInputs = (input) => {
             break;
     }
 
-    let currentTimer = timerQuery.getCurrentTimer();
-    if (timer[changedInput] === currentTimer()) {
+    let currentTimer = timerQuery.getCurrentTimerKey();
+
+    if (changedInput === currentTimer) {
 
         clearInterval(timer.timerID);
         timerUI.resetTimerUI();
@@ -203,7 +204,7 @@ const timerInputEvent = () => {
             } else if (input.value > 60) {
                 input.value = 60;
             }
-
+  
             updateTimerInputs(input);
         });
 };

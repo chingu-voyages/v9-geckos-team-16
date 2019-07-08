@@ -39,9 +39,31 @@ const getCurrentMinutes = () => {
     return timer.currentMinutes;
 };
 
+const getCurrentTimerKey = () => {
+
+    let key = '';
+
+    if (runningTimer.sessionTimer) {
+
+        key = 'sessionMinutes';
+    } else if (runningTimer.breakTimer) {
+
+        if (timer.sessionCount % timer.breakInterval === 0) {
+
+            key = 'longBreakMinutes';
+        } else {
+
+            key = 'shortBreakMinutes';
+        }
+    }
+
+    return key;
+};
+
 export {
     getCurrentTimer,
     getSessionMinutes,
     getBreakTimeMinutes,
-    getCurrentMinutes
+    getCurrentMinutes,
+    getCurrentTimerKey
 };
