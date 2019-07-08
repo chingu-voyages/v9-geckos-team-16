@@ -41,10 +41,10 @@ const resetTimerUI = () => {
 
     // Tells the user if they should be working or having a break
     if (runningTimer.sessionTimer) {
-    document.getElementById('timer-status').textContent = 'Time to work';
+        document.getElementById('timer-status').textContent = 'Time to work';
         console.log('at session');
     } else if (runningTimer.breakTimer) {
-    document.getElementById('timer-status').textContent = 'Have a break';
+        document.getElementById('timer-status').textContent = 'Have a break';
         console.log('at breaktime');
     }
 
