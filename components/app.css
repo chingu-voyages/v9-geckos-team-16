@@ -55,12 +55,10 @@ html {
   border-style: hidden;
   background-color: transparent;
   border-bottom: solid #ffffff 2px;
-  font-size: 15px;
-  font-family: sans-serif;
   white-space: pre;
   padding: 0px;
 }
 
 span.name-textbox {
-  display: none;
+  min-width: 100px;
 }
