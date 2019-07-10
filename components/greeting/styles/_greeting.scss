@@ -1,0 +1,19 @@
+#greeting-container {
+    color: #ffffff;
+    font-size: 300%;
+    font-family: sans-serif;
+}
+
+.name-textbox {
+    border-style: hidden;
+    background-color: transparent;
+    border-bottom: solid #ffffff 2px;
+    font-size: 15px;
+    font-family: sans-serif;
+    white-space: pre;
+    padding: 0px;
+}
+
+span.name-textbox {
+    display: none;
+}

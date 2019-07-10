@@ -11,9 +11,8 @@ const getBackgroundImage = () => {
         'mountains',
         'eagle',
         'rivers',
-        'lighthouse',
-        'lightning',
-        'spectrums'
+        'forest',
+        'lightning'
     ];
     let index = Math.floor(Math.random() * Math.floor(searchTerm.length));
     let category = searchTerm[index];

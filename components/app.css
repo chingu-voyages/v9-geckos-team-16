@@ -1,1 +1,66 @@
-html{background-clip:border-box;background-repeat:no-repeat;background-position:center center;background-attachment:fixed;background-size:cover}#quote-container blockquote{background-color:rgba(255,255,255,0.5);font-size:23px}.pie{width:300px;height:300px;display:block;position:relative;border-radius:50%;background-color:#ffffff;float:left;margin:2em}.pie .block{position:absolute;background:#fff;width:280px;height:280px;display:block;border-radius:50%;top:10px;left:10px}#clock-body{font-size:3em;position:absolute;top:39%;left:29%;color:#999}.degree{background-image:none}
+html {
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+#quote-container blockquote {
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 23px;
+}
+
+.pie {
+  width: 300px;
+  height: 300px;
+  display: block;
+  position: relative;
+  border-radius: 50%;
+  background-color: #ffffff;
+  float: left;
+  margin: 2em;
+}
+
+.pie .block {
+  position: absolute;
+  background: #fff;
+  width: 280px;
+  height: 280px;
+  display: block;
+  border-radius: 50%;
+  top: 10px;
+  left: 10px;
+}
+
+#clock-body {
+  font-size: 3em;
+  position: absolute;
+  top: 39%;
+  left: 29%;
+  color: #999999;
+}
+
+.degree {
+  background-image: none;
+}
+
+#greeting-container {
+  color: #ffffff;
+  font-size: 300%;
+  font-family: sans-serif;
+}
+
+.name-textbox {
+  border-style: hidden;
+  background-color: transparent;
+  border-bottom: solid #ffffff 2px;
+  font-size: 15px;
+  font-family: sans-serif;
+  white-space: pre;
+  padding: 0px;
+}
+
+span.name-textbox {
+  display: none;
+}
