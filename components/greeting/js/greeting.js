@@ -1,3 +1,18 @@
+const keyPressEvent = () => {
+
+    let input = document.querySelector('span.name-textbox');
+    input.addEventListener('keydown', (e) => {
+
+        if (e.key === 'Enter') {
+            input.setAttribute('contenteditable', false);
+        }
+
+        if (input.textContent.length === 1 && e.key === 'Backspace') {
+            input.textContent = '        ';
+        }
+    });
+};
+
 const renderGreeting = () => {
 
     let request = new XMLHttpRequest();
@@ -16,6 +31,7 @@ const renderGreeting = () => {
         }
 
         container.append(response.querySelector('div'));
+        keyPressEvent();
     });
 };
 
