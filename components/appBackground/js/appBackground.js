@@ -9,9 +9,13 @@ const getBackgroundImage = () => {
         'penguin',
         'trees',
         'mountains',
-        'eagle'
+        'eagle',
+        'rivers',
+        'lighthouse',
+        'lightning',
+        'spectrums'
     ];
-    let index = Math.floor(Math.random() * Math.floor(9));
+    let index = Math.floor(Math.random() * Math.floor(searchTerm.length));
     let category = searchTerm[index];
     let request = new XMLHttpRequest();
     

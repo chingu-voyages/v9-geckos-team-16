@@ -13,9 +13,9 @@ let timer = {
     totalSeconds: 0,
     sessionCount: 0,
     breakInterval: 4,
-    longBreakMinutes: 3,
-    shortBreakMinutes: 1,
-    sessionMinutes: 2,
+    longBreakMinutes: 15,
+    shortBreakMinutes: 5,
+    sessionMinutes: 25,
     timerID: 0
 };
 
