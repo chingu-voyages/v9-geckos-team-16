@@ -28,9 +28,13 @@
 
     <!-- MAIN NAV -->
     <ul class="main-page-nav navbar-nav ml-auto">
+        <div class="btn btn-link mr-3" id="todo-open-button">
+            <i class="fas fa-clipboard-list"></i>
+        </div>
         <div class="btn btn-link mr-3" id="settings-button">
             <i class="fa fa-cog"></i>
         </div>
+
     </ul>
 
 
@@ -56,10 +60,6 @@
                 <div class="btn btn-link mr-3">
                 </div>
 
-                <div class="btn btn-link mr-3" id="todo-open-button">
-                    <i class="fa fa-angle-up"></i>
-                </div>
-
                 <div class="btn btn-link mr-3 space">
                 </div>
 
@@ -68,6 +68,9 @@
                 </div>
                 <div class="btn btn-link mr-3" id="create_list_btn">
                     <i class="fa fa-plus"></i>
+                </div>
+                <div class="btn btn-link mr-3" id="todo-close-button">
+                    <i class="fa fa-times"></i>
                 </div>
 
             </ul>
@@ -175,7 +178,7 @@
                         <!-- User setting -->
                         <div class="card mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Set your name</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">User settings</h6>
                             </div>
                             <div class="card-body">
                                 <div id="user-setting">

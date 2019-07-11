@@ -75,8 +75,8 @@
 
 .todo-page {
 	
-	width: 25%;
-    height: 100%;
+	width: 0%;
+    height: 0%;
 
     background-color: none;
     border-radius: 10px;
@@ -160,15 +160,13 @@
 }
 
 #todo-open-button {
-	width: 100%;
-	position: absolute;
 	top: 0;
     left: 0;
     right: 0;
 
 	visibility: visible;
 	opacity: 1;
-    z-index: 13;
+    /*z-index: 13;*/
 
     transition: 0.3s;
 }
@@ -176,12 +174,11 @@
 #todo-open-button.todo-button-close-state {
 	/*width: 50px;
 	max-width: 50px;
-	margin: 0 auto;*/
+	margin: 0 auto;
 
     z-index: 12;
-
+*/
 	transform: rotate(180deg);
-
 	transition: 0.3s;
 }
 
@@ -196,7 +193,7 @@
 */
 
 .fa-circle.uncheck_item_img {
-	color: ##858796;
+	color: #858796;
 
 	transition: 0.3s;
 }

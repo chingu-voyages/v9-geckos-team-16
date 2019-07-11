@@ -1,30 +1,27 @@
-
-$(document).ready(function(){
+$(document).ready(function () {
 
 	// TOGGLE ON/OFF SETTINGS PAGE
-	$("#settings-button").click(function(){
+	$("#settings-button").click(function () {
 		$(".settings-page").addClass("show");
 	});
 
-	$("#settings-back-button").click(function(){
+	$("#settings-back-button").click(function () {
 		$(".settings-page").removeClass("show");
 	});
 
 	// SLIDE UP/DOWN the TO-DO LIST PAGE
-	$("#todo-open-button").click(function(){
-		if ($("#todo-open-button").hasClass("todo-button-close-state")) {
-			$(".todo-page").removeClass("show");
-			$("#todo-open-button").removeClass("todo-button-close-state");
-			$(".todo-page-nav").removeClass("show");
-		} else {
-			$(".todo-page").addClass("show");
-			$("#todo-open-button").addClass("todo-button-close-state");
-			$(".todo-page-nav").addClass("show");
-		};
+	$("#todo-open-button").click(function () {
+		$(".todo-page").addClass("show");
+		$(".todo-page-nav").addClass("show");
+	});
+
+	$("#todo-close-button").click(function () {
+		$(".todo-page").removeClass("show");
+		$(".todo-page-nav").removeClass("show");
 	});
 
 	// TOGGLE ON/OFF EDIT MODE in the TO-DO LIST
-	$("#todo-edit-button").click(function(){
+	$("#todo-edit-button").click(function () {
 		if ($("#todo-edit-button").hasClass("edit-on")) {
 			$("#todo-edit-button").removeClass("edit-on");
 			$(".update_list_img").removeClass("show");
