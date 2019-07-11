@@ -1,13 +1,13 @@
 const keyPressEvent = () => {
 
-    let input = document.querySelector('span.name-textbox');
+    let input = document.querySelector('.name-textbox');
     let startString = '';
-    let paddedString = startString.padStart(5).padEnd(5);
+    let paddedString = startString.padStart(5);
     input.textContent = paddedString;
 
     input.addEventListener('keyup', (e) => {
 
-        if (e.key === 'Backspace' && input.textContent.length <= 1) {
+        if (input.textContent.length <= 0) {
 
             input.textContent = paddedString;
         }
@@ -18,12 +18,25 @@ const keyPressEvent = () => {
         if (e.key === 'Enter') {
 
             input.setAttribute('contenteditable', false);
+            document.getElementById('user-name').value = input.textContent;
         } else if (e.key !== 'Backspace') {
 
             input.textContent = input.textContent.trim();
         }
     });
 };
+
+const changeUserNameEvent = () => {
+
+    let input = document.getElementById('user-name');
+    let greetingTextBox = document.querySelector('.name-textbox');
+    
+    input.addEventListener('input', () => {
+
+        greetingTextBox.textContent = input.value;
+        greetingTextBox.setAttribute('contenteditable', false);
+    });
+}
 
 const renderGreeting = () => {
 
@@ -44,6 +57,7 @@ const renderGreeting = () => {
 
         container.append(response.querySelector('div'));
         keyPressEvent();
+        changeUserNameEvent();
     });
 };
 

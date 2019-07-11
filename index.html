@@ -6,7 +6,9 @@
     <meta charset="utf-8">
 
     <!-- Custom fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="src/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom bootstraps-->
@@ -33,7 +35,7 @@
 
 
     <div class="container">
-        
+
         <!-- TIMER elements -->
         <div id="timer-container"></div>
         <div style="clear:both;"></div>
@@ -45,93 +47,98 @@
 
     <!-- TO-DO LIST page -->
     <div class="todo-page" id="todo-page-slide">
-        
+
         <div class="container">
 
-        <!-- To-do page - nav bar -->
-        <ul class="todo-page-nav navbar-nav ml-auto">
+            <!-- To-do page - nav bar -->
+            <ul class="todo-page-nav navbar-nav ml-auto">
 
-            <div class="btn btn-link mr-3">
-            </div>
-
-            <div class="btn btn-link mr-3" id="todo-open-button">
-                <i class="fa fa-angle-up"></i>
-            </div>
-
-            <div class="btn btn-link mr-3 space">
-            </div>
-
-            <div class="btn btn-link mr-3" id="todo-edit-button">
-                <i class="fa fa-pen"></i>
-            </div>
-            <div class="btn btn-link mr-3" id="create_list_btn">
-                <i class="fa fa-plus"></i>
-            </div>
-
-        </ul>   
-
-        <!--Page Container -->
-        <div class="container-fluid">
-
-            <!-- Content Row -->
-            <div class="row">
-
-                <div class="col-lg-6 lists_container">
-                
-                <div class="todo_list">
-
-                    <div class="todo_list_elements">
-                        
-                        <div class="list_item_col">
-                            <input type="text" class="list_name_inputs text-gray-800" placeholder="Name your list" disabled/>
-                        </div>
-                        <div class="list_item_col">
-                            <i class="fa fa-1halfx fa-pen todo_icons update_list_img"></i>
-                        </div>
-                        <div class="list_item_col">
-                            <i class="fa fa-1halfx fa-trash-alt todo_icons delete_list_img"></i>
-                        </div>
-
-                    </div>
-
-                    <div class="list-item-row">
-
-                            <i class="far fa-1halfx fa-circle todo_icons uncheck_item_img"></i>
-                            <input class="text-gray-800 list_item_inputs" type="text"  placeholder="New Task" disabled />
-
-                            <div>
-                                <i class="fa fa-pen todo_icons update_list_item_img"></i>
-                            </div>
-
-                            <div>
-                                <i class="fa fa-trash-alt todo_icons delete_list_item_img"></i>
-                            </div>
-
-                    </div>
-
-                    <div class="list-item-row">
-
-                            <i class="far fa-1halfx fa-circle todo_icons uncheck_item_img"></i>
-                            <input class="text-gray-800 list_item_inputs" type="text"  placeholder="New Task" disabled />
-
-                            <div>
-                                <i class="fa fa-pen todo_icons update_list_item_img"></i>
-                            </div>
-
-                            <div>
-                                <i class="fa fa-trash-alt todo_icons delete_list_item_img"></i>
-                            </div>
-
-                    </div>
-
-                    <div class=" add_list_item_img todo-add-task-button hide">
-                        <i class="fa fa-plus todo_icons"></i>
-                        <span class="add-task-label">Add Task</span>
-                    </div>
-
+                <div class="btn btn-link mr-3">
                 </div>
 
-                <!-- created lists will be appended inside here -->
+                <div class="btn btn-link mr-3" id="todo-open-button">
+                    <i class="fa fa-angle-up"></i>
+                </div>
+
+                <div class="btn btn-link mr-3 space">
+                </div>
+
+                <div class="btn btn-link mr-3" id="todo-edit-button">
+                    <i class="fa fa-pen"></i>
+                </div>
+                <div class="btn btn-link mr-3" id="create_list_btn">
+                    <i class="fa fa-plus"></i>
+                </div>
+
+            </ul>
+
+            <!--Page Container -->
+            <div class="container-fluid">
+
+                <!-- Content Row -->
+                <div class="row">
+
+                    <div class="col-lg-6 lists_container">
+
+                        <div class="todo_list">
+
+                            <div class="todo_list_elements">
+
+                                <div class="list_item_col">
+                                    <input type="text" class="list_name_inputs text-gray-800"
+                                        placeholder="Name your list" disabled />
+                                </div>
+                                <div class="list_item_col">
+                                    <i class="fa fa-1halfx fa-pen todo_icons update_list_img"></i>
+                                </div>
+                                <div class="list_item_col">
+                                    <i class="fa fa-1halfx fa-trash-alt todo_icons delete_list_img"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="list-item-row">
+
+                                <i class="far fa-1halfx fa-circle todo_icons uncheck_item_img"></i>
+                                <input class="text-gray-800 list_item_inputs" type="text" placeholder="New Task"
+                                    disabled />
+
+                                <div>
+                                    <i class="fa fa-pen todo_icons update_list_item_img"></i>
+                                </div>
+
+                                <div>
+                                    <i class="fa fa-trash-alt todo_icons delete_list_item_img"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="list-item-row">
+
+                                <i class="far fa-1halfx fa-circle todo_icons uncheck_item_img"></i>
+                                <input class="text-gray-800 list_item_inputs" type="text" placeholder="New Task"
+                                    disabled />
+
+                                <div>
+                                    <i class="fa fa-pen todo_icons update_list_item_img"></i>
+                                </div>
+
+                                <div>
+                                    <i class="fa fa-trash-alt todo_icons delete_list_item_img"></i>
+                                </div>
+
+                            </div>
+
+                            <div class=" add_list_item_img todo-add-task-button hide">
+                                <i class="fa fa-plus todo_icons"></i>
+                                <span class="add-task-label">Add Task</span>
+                            </div>
+
+                        </div>
+
+                        <!-- created lists will be appended inside here -->
+
+                    </div>
 
                 </div>
 
@@ -141,8 +148,6 @@
 
     </div>
 
-    </div>
-    
 
 
     <!-- SETTINGS page -->
@@ -151,74 +156,96 @@
         <!-- Settings page - nav bar -->
         <ul class="settings-page-nav navbar-nav ml-auto">
             <div class="btn btn-link mr-3" id="settings-back-button">
-                <i class="fa fa-times"></i> 
+                <i class="fa fa-times"></i>
             </div>
         </ul>
 
-    <div class="container">
+        <div class="container">
 
-        <!--Page Container -->
-        <div class="container-fluid">
+            <!--Page Container -->
+            <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <h1 class="h3 mb-3 text-gray-800">Settings</h1>
+                <!-- Page Heading -->
+                <h1 class="h3 mb-3 text-gray-800">Settings</h1>
 
-            <!-- Content Row -->
-            <div class="row">
+                <!-- Content Row -->
+                <div class="row">
+                    <div class="col-lg-6">
 
-                <div class="col-lg-6">
-
-                    <!-- Durations -->
-                    <div class="card mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Durations and Intervals</h6>
-                        </div>
-                        <div class="card-body">
-
-                            <p class="mb-4">Set how long you want your <code> Work</code> and <code> Break</code> times should be. </p>
-
-                            <div id="timer-input">
-
-
-                                <div class="form-group">
-                                    <label>Work Duration</label>
-                                    <div class="form-group-space"></div>
-
-                                    <input type="number" class="form-control" id="session-minutes" value="25" />
-
-                                    <label class="units">Minutes</label><br>
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label>Short Break Duration</label>
-                                    <div class="form-group-space"></div>
-                                    <input type="number" class="form-control" id="short-break-minutes" value="5" />
-                                    <label class="units">Minutes</label><br>
-                                </div>
-
-                                
-                                <div class="form-group">
-                                    <label>Long Break Duration</label>
-                                    <div class="form-group-space"></div>
-                                    <input type="number" class="form-control" id="long-break-minutes" value="15" />
-                                    <label class="units">Minutes</label><br>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Long Break Interval</label>
-                                    <div class="form-group-space"></div>
-                                    <input type="number" class="form-control" id="break-interval" value="4" />
-                                    <label class="units">Intervals</label><br>
-                                </div>
-                                
+                        <!-- User setting -->
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Set your name</h6>
                             </div>
-
+                            <div class="card-body">
+                                <div id="user-setting">
+                                    <div class="form-group">
+                                        <label class="col-sm-3">Your name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="user-name" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Intervals
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <!-- Durations -->
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Durations and Intervals</h6>
+                            </div>
+                            <div class="card-body">
+
+                                <p class="mb-4">Set how long you want your <code> Work</code> and <code> Break</code>
+                                    times should be. </p>
+
+                                <div id="timer-input">
+
+
+                                    <div class="form-group">
+                                        <label>Work Duration</label>
+                                        <div class="form-group-space"></div>
+
+                                        <input type="number" class="form-control" id="session-minutes" value="25" />
+
+                                        <label class="units">Minutes</label><br>
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label>Short Break Duration</label>
+                                        <div class="form-group-space"></div>
+                                        <input type="number" class="form-control" id="short-break-minutes" value="5" />
+                                        <label class="units">Minutes</label><br>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Long Break Duration</label>
+                                        <div class="form-group-space"></div>
+                                        <input type="number" class="form-control" id="long-break-minutes" value="15" />
+                                        <label class="units">Minutes</label><br>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Long Break Interval</label>
+                                        <div class="form-group-space"></div>
+                                        <input type="number" class="form-control" id="break-interval" value="4" />
+                                        <label class="units">Intervals</label><br>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Intervals
                     <div class="card mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Intervals</h6>
@@ -232,10 +259,10 @@
                         </div>
                     </div> -->
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 
