@@ -1,14 +1,26 @@
 const keyPressEvent = () => {
 
     let input = document.querySelector('span.name-textbox');
+    let startString = '';
+    let paddedString = startString.padStart(5).padEnd(5);
+    input.textContent = paddedString;
+
+    input.addEventListener('keyup', (e) => {
+
+        if (e.key === 'Backspace' && input.textContent.length <= 1) {
+
+            input.textContent = paddedString;
+        }
+    });
+
     input.addEventListener('keydown', (e) => {
 
         if (e.key === 'Enter') {
-            input.setAttribute('contenteditable', false);
-        }
 
-        if (input.textContent.length === 1 && e.key === 'Backspace') {
-            input.textContent = '        ';
+            input.setAttribute('contenteditable', false);
+        } else if (e.key !== 'Backspace') {
+
+            input.textContent = input.textContent.trim();
         }
     });
 };
