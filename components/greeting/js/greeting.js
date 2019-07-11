@@ -30,13 +30,33 @@ const changeUserNameEvent = () => {
 
     let input = document.getElementById('user-name');
     let greetingTextBox = document.querySelector('.name-textbox');
-    
+
     input.addEventListener('input', () => {
 
         greetingTextBox.textContent = input.value;
         greetingTextBox.setAttribute('contenteditable', false);
     });
-}
+};
+
+const setCurrentTime = () => {
+
+    let today = new Date();
+    let currentHour = today.getHours();
+    let greetingText;
+
+    if (currentHour >= 6 && currentHour < 13) {
+
+        greetingText = 'Morning';
+    } else if (currentHour >= 13 && currentHour < 18) {
+
+        greetingText = 'Afternoon';
+    } else if (currentHour >= 18 || (currentHour >= 5 && currentHour < 6)) {
+
+        greetingText = 'Evening';
+    }
+
+    document.querySelector('.time-textbox').textContent = greetingText;   
+};
 
 const renderGreeting = () => {
 
@@ -58,6 +78,10 @@ const renderGreeting = () => {
         container.append(response.querySelector('div'));
         keyPressEvent();
         changeUserNameEvent();
+        
+        //set the greeting text, and check it every 5 minutes
+        setCurrentTime();
+        setInterval(setCurrentTime,300000);
     });
 };
 
