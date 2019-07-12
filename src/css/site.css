@@ -32,6 +32,14 @@
     pointer-events: none;
 }
 
+.btn-light{
+    border-color: #999999;
+}
+
+.btn-light:hover{
+    background-color: #1fbb39;
+    border-color: #1fbb39;
+}
 
 /* Main page */
 body {
@@ -92,73 +100,6 @@ body:before {
 
     text-align: center;
 }
-
-#timer-container {
-    display: flex;
-    justify-content: center;
-}
-
-#timer-status {
-    text-align: center;
-    color: #816767;
-}
-
-.bar {
-    margin: 10px;
-    background-image: linear-gradient(tomato, tomato);
-
-    transition: 0.3s;
-}
-
-.pie {
-    width: 200px;
-    height: 200px;
-    display: block;
-    position: relative;
-    background-color: #ffffff;
-    border-radius: 50%;
-    border: none;
-    float: left;
-    margin: 2em;
-}
-
-.pie .block {
-    position: absolute;
-    background-color: #ffffff;
-    width: 180px;
-    height: 180px;
-    display: block;
-    border-radius: 50%;
-    top: 10px;
-    left: 10px;
-}
-
-#clock-body {
-    font-size: 1.1em;
-    position: absolute;
-    top: 30%;
-    left: 0;
-    right: 0;
-    color: #816767;
-}
-
-.degree {
-    background-image: linear-gradient(90deg, transparent 50%, #1fbb39 50%),
-        linear-gradient(90deg, #1fbb39 50%, transparent 50%);
-
-    transition: 0.3s;
-}
-
-.pie .timer-buttons {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 60px;
-
-    display: flex;
-    justify-content: center;
-}
-
 
 /* Settings page */
 .settings-page {

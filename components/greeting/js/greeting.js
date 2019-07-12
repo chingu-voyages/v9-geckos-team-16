@@ -38,7 +38,7 @@ const changeUserNameEvent = () => {
     });
 };
 
-const setCurrentTime = () => {
+const setGreetingText = () => {
 
     let today = new Date();
     let currentHour = today.getHours();
@@ -50,7 +50,7 @@ const setCurrentTime = () => {
     } else if (currentHour >= 13 && currentHour < 18) {
 
         greetingText = 'Afternoon';
-    } else if (currentHour >= 18 || (currentHour >= 5 && currentHour < 6)) {
+    } else if (currentHour >= 18 || currentHour <= 5) {
 
         greetingText = 'Evening';
     }
@@ -80,8 +80,8 @@ const renderGreeting = () => {
         changeUserNameEvent();
         
         //set the greeting text, and check it every 5 minutes
-        setCurrentTime();
-        setInterval(setCurrentTime,300000);
+        setGreetingText();
+        setInterval(setGreetingText,300000);
     });
 };
 

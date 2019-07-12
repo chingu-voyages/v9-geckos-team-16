@@ -39,7 +39,7 @@ const showQuote = () => {
             container.firstChild.remove();
         }
 
-        let index = Math.floor(Math.random() * Math.floor(quotes.length));
+        let index = Math.floor(Math.random() * quotes.length);
         container.append(response.querySelector('blockquote'));
         container.querySelector('blockquote').textContent = quotes[index];
     });
