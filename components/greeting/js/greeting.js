@@ -19,7 +19,7 @@ const keyPressEvent = () => {
 
             input.setAttribute('contenteditable', false);
             document.getElementById('user-name').value = input.textContent;
-        } else if (e.key !== 'Backspace') {
+        } else {
 
             input.textContent = input.textContent.trim();
         }
@@ -31,7 +31,7 @@ const changeUserNameEvent = () => {
     let input = document.getElementById('user-name');
     let greetingTextBox = document.querySelector('.name-textbox');
 
-    input.addEventListener('input', () => {
+    input.addEventListener('change', () => {
 
         greetingTextBox.textContent = input.value;
         greetingTextBox.setAttribute('contenteditable', false);
@@ -44,6 +44,7 @@ const setGreetingText = () => {
     let currentHour = today.getHours();
     let greetingText;
 
+    //Text is dependent on the hour of the 24hour clock
     if (currentHour >= 6 && currentHour < 13) {
 
         greetingText = 'Morning';
@@ -55,7 +56,7 @@ const setGreetingText = () => {
         greetingText = 'Evening';
     }
 
-    document.querySelector('.time-textbox').textContent = greetingText;   
+    document.querySelector('.time-textbox').textContent = greetingText;
 };
 
 const renderGreeting = () => {
@@ -78,10 +79,10 @@ const renderGreeting = () => {
         container.append(response.querySelector('div'));
         keyPressEvent();
         changeUserNameEvent();
-        
+
         //set the greeting text, and check it every 5 minutes
         setGreetingText();
-        setInterval(setGreetingText,300000);
+        setInterval(setGreetingText, 300000);
     });
 };
 

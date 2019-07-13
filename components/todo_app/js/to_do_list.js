@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 	//global variables
 	// points to the container where new lists are to be dumped
-	var lists_container = $(".lists_container");
+	var lists_container = $(".todo-page .lists_container");
 
 	// points to the list and list-item html layouts
 	var component_base_url = './components/todo_app/';
@@ -77,7 +77,7 @@ $(document).ready(function () {
 			var list_name = $(this).closest(".todo_list_elements").find("input").val();
 
 			//	check if something has been entered
-			if (list_name.length > 3) {	
+			if (list_name.length > 3) {
 				console.log("list_name.length > 3");
 				//disable the input
 				$(this).closest('.todo_list_elements').find("input").attr('disabled', 'disabled');
@@ -151,7 +151,7 @@ $(document).ready(function () {
 			var list_item = $(this).closest('.list-item-row').find("input").val();
 
 			//	check if something has been entered
-			if (list_item.length > 0) {	
+			if (list_item.length > 0) {
 				console.log("list_item.length > 0");
 
 				//disable the input
@@ -160,9 +160,6 @@ $(document).ready(function () {
 				$(this).addClass("fa-pen");
 			}
 		}
-
-
-
 	});
 
 	// when user wishes to delete a list item
@@ -199,4 +196,14 @@ $(document).ready(function () {
 		$(this).removeClass("uncheck_item_img");
 		$(this).addClass("check_item_img");
 	});
+
+	/********************CHECK FOR INPUT CHANGES*****************************************/
+	lists_container.on('change', 'input', function () {
+
+		let firstTodoList = lists_container.children()
+			.first().clone(true);
+
+		$('#list-copy .lists_container').empty().append(firstTodoList);
+	});
+
 });

@@ -34,7 +34,7 @@ const updateTimerInputs = (input) => {
 
     let changedInput = '';
     let keys = Object.keys(timer);
-    
+
     switch (input.id) {
         case 'long-break-minutes':
 
@@ -157,7 +157,7 @@ const runSecondsTimer = (timerMinutes) => {
 };
 
 const resetTimerCounter = () => {
-    
+
     document.getElementById('start').textContent = 'Start';
     timer.paused = false;
     timer.uiTimerCount = 0;
@@ -199,12 +199,25 @@ const timerInputEvent = () => {
 
             let input = event.target;
 
-            if (input.value < 1) {
-                input.value = 1;
-            } else if (input.value > 60) {
-                input.value = 60;
+            if (input.id !== 'break-interval') {
+
+                if (input.value < 1) {
+
+                    input.value = 1;
+                } else if (input.value > 60) {
+
+                    input.value = 60;
+                }
+            } else {
+                if (input.value < 2) {
+
+                    input.value = 2;
+                } else if (input.value > 8) {
+
+                    input.value = 8;
+                }
             }
-  
+
             updateTimerInputs(input);
         });
 };
