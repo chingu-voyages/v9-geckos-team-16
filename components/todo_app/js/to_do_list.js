@@ -203,7 +203,45 @@ $(document).ready(function () {
 		let firstTodoList = lists_container.children()
 			.first().clone(true);
 
+		firstTodoList.find('input').attr('disabled', true);
 		$('#list-copy .lists_container').empty().append(firstTodoList);
 	});
 
+	/**********************SLIDE UP/DOWN the TO-DO LIST PAGE******************************/
+	$("#todo-open-button").click(function () {
+
+		$(".todo-page").addClass("show");
+		$(".todo-page-nav").addClass("show");
+	});
+
+	$("#todo-close-button").click(function () {
+
+		$(".todo-page").removeClass("show");
+		$(".todo-page-nav").removeClass("show");
+	});
+
+	/********************** TOGGLE ON/OFF EDIT MODE in the TO-DO LIST ************************/
+	$("#todo-edit-button").click(function () {
+		if ($("#todo-edit-button").hasClass("edit-on")) {
+
+			$("#todo-close-button").prop('hidden', false);
+			$("#todo-edit-button").removeClass("edit-on");
+			$(".update_list_img").removeClass("show");
+			$(".delete_list_img").removeClass("show");
+
+			$(".update_list_item_img").removeClass("show");
+			$(".delete_list_item_img").removeClass("show");
+			$(".todo-add-task-button").addClass("hide");
+		} else {
+
+			$("#todo-close-button").prop('hidden', true);
+			$("#todo-edit-button").addClass("edit-on");
+			$(".update_list_img").addClass("show");
+			$(".delete_list_img").addClass("show");
+
+			$(".update_list_item_img").addClass("show");
+			$(".delete_list_item_img").addClass("show");
+			$(".todo-add-task-button").removeClass("hide");
+		};
+	});
 });
