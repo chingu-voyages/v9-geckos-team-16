@@ -1,15 +1,14 @@
 const keyPressEvent = () => {
 
     let input = document.querySelector('.name-textbox');
-    let startString = '';
-    let paddedString = startString.padStart(5);
-    input.textContent = paddedString;
+    let startString = '    ';
+    input.textContent = startString;
 
     input.addEventListener('keyup', (e) => {
 
         if (input.textContent.length <= 0) {
 
-            input.textContent = paddedString;
+            input.textContent = startString;
         }
     });
 
@@ -21,7 +20,19 @@ const keyPressEvent = () => {
             document.getElementById('user-name').value = input.textContent;
         } else {
 
-            input.textContent = input.textContent.trim();
+            //Fix for firefox browsers - the trim function works differently on it, the behavior is as intended on Edge and Chrome
+            //the three statements after calling trim guarantees the cursor is at the end of the element
+            //TODO - this fix above breaks the left and right arrow keys 
+            if (typeof InstallTrigger !== 'undefined') {
+
+                input.textContent = input.textContent.trim();
+                input.focus();
+                document.execCommand('selectAll', false, null);
+                document.getSelection().collapseToEnd();
+            } else {
+
+                input.textContent = input.textContent.trim();
+            }
         }
     });
 };
