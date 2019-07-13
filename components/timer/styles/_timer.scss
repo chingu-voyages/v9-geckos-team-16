@@ -1,5 +1,19 @@
 $timer-color: #1fbb39;
 
+#clock-body {
+    text-align: center;
+    font-size: 2em;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+    color: #999999;
+}
+
+#clock-buttons {
+    text-align: center;
+}
+
 #timer-container {
     display: flex;
     justify-content: center;
@@ -41,15 +55,6 @@ $timer-color: #1fbb39;
         display: flex;
         justify-content: center;
     }
-}
-
-#clock-body {
-    font-size: 2em;
-    position: absolute;
-    top: 30%;
-    left: 0;
-    right: 0;
-    color: #999999;
 }
 
 .degree {

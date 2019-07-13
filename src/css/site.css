@@ -1,10 +1,4 @@
-#clock-body {
-    text-align: center;
-}
 
-#clock-buttons {
-    text-align: center;
-}
 
 /* Bootstrap customizations */
 
@@ -89,16 +83,6 @@ body:before {
 
     font-size: 24px;
     color: #fcfcfc;
-}
-
-#quote-container blockquote {
-
-    background-color: transparent;
-
-    font-size: 20px;
-    color: #fcfcfc;
-
-    text-align: center;
 }
 
 /* Settings page */
