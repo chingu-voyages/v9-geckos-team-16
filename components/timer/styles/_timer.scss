@@ -7,7 +7,7 @@ $timer-color: #1fbb39;
     top: 30%;
     left: 0;
     right: 0;
-    color: #999999;
+    color: #ffffff;
 }
 
 #clock-buttons {
@@ -21,7 +21,7 @@ $timer-color: #1fbb39;
 
 #timer-status {
     text-align: center;
-    color: #999999;
+    color: #ffffff;
 }
 
 .pie {
@@ -31,13 +31,13 @@ $timer-color: #1fbb39;
     position: relative;
     border-radius: 50%;
     border: none;
-    background-color: #fcfcfc;
+    background-color: transparent;
     float: left;
     margin: 2em;
 
     .block {
         position: absolute;
-        background: #fcfcfc;
+        background-color: transparent;
         width: 280px;
         height: 280px;
         display: block;
@@ -51,15 +51,15 @@ $timer-color: #1fbb39;
         left: 0;
         right: 0;
         bottom: 60px;
-    
+
         display: flex;
         justify-content: center;
     }
 }
 
-.degree {
-    background-image: linear-gradient(90deg, transparent 50%, $timer-color 50%),
-        linear-gradient(90deg,$timer-color 50%, transparent 50%);
+// .degree {
+//     background-image: linear-gradient(90deg, transparent 50%, $timer-color 50%),
+//         linear-gradient(90deg, $timer-color 50%, transparent 50%);
 
-    transition: 0.3s;
-}
+//     transition: 0.3s;
+// }

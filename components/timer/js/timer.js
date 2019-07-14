@@ -146,7 +146,7 @@ const runSecondsTimer = (timerMinutes) => {
 
         timerUI.setMinutes(timerQuery.getCurrentMinutes);
         timerUI.setSeconds(timer.currentSeconds);
-        timerUI.updateClockFace(timer.uiTimerCount);
+        //timerUI.updateClockFace(timer.uiTimerCount);
 
         if (timer.clockTotal < 0) {
 

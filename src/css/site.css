@@ -28,11 +28,19 @@
 
 .btn-light{
     border-color: #999999;
+    color:#ffffff;
+    background-color:transparent;
+    border-color: #ffffff;
+    width:12em;
+    border-radius: 0%;
+    transition: all 0.5s;
 }
 
 .btn-light:hover{
-    background-color: #1fbb39;
-    border-color: #1fbb39;
+    color:#ffffff;
+    background-color: #999999;
+    border-color: #ffffff;
+    transition: all 0.5s;
 }
 
 /* Main page */
@@ -60,13 +68,6 @@ body:before {
     left: 0;
     right: 0;
     z-index: -1;
-}
-
-.main-page-nav {
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
 }
 
 #settings-button {

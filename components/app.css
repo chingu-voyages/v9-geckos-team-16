@@ -10,6 +10,38 @@ footer.fixed-bottom {
   z-index: 1;
 }
 
+.main-page-nav {
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 0.5em;
+}
+
+.main-page-nav span {
+  margin-right: auto;
+  color: #ffffff;
+}
+
+.main-page-nav span a {
+  color: #ffffff;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.main-page-nav span a:hover {
+  color: #999999;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
 #quote-container blockquote {
   background-color: transparent;
   font-size: 1.1em;
@@ -24,7 +56,7 @@ footer.fixed-bottom {
   top: 30%;
   left: 0;
   right: 0;
-  color: #999999;
+  color: #ffffff;
 }
 
 #clock-buttons {
@@ -42,7 +74,7 @@ footer.fixed-bottom {
 
 #timer-status {
   text-align: center;
-  color: #999999;
+  color: #ffffff;
 }
 
 .pie {
@@ -52,14 +84,14 @@ footer.fixed-bottom {
   position: relative;
   border-radius: 50%;
   border: none;
-  background-color: #fcfcfc;
+  background-color: transparent;
   float: left;
   margin: 2em;
 }
 
 .pie .block {
   position: absolute;
-  background: #fcfcfc;
+  background-color: transparent;
   width: 280px;
   height: 280px;
   display: block;
@@ -79,13 +111,6 @@ footer.fixed-bottom {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.degree {
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, #1fbb39)), -webkit-gradient(linear, left top, right top, color-stop(50%, #1fbb39), color-stop(50%, transparent));
-  background-image: linear-gradient(90deg, transparent 50%, #1fbb39 50%), linear-gradient(90deg, #1fbb39 50%, transparent 50%);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 #greeting-container {

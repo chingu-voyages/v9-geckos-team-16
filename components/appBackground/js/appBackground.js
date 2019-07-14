@@ -6,10 +6,12 @@ const getBackgroundImage = () => {
         'cat',
         'stars',
         'wolf',
+        'ocean',
+        'dog',
         'tree',
         'tiger',
         'lion',
-        'lightning',
+        'desert',
         'penguin',     
         'mountain',
         'eagle',
@@ -23,9 +25,9 @@ const getBackgroundImage = () => {
     request.addEventListener('load', () => {
 
         let response = JSON.parse(request.response);
-        document.querySelector('body').style.backgroundImage = `url(${response.urls.full})`;
+        document.querySelector('body').style.backgroundImage = `url(${response.urls.regular})`;
         
-        let footerLink = document.querySelector('footer span').firstElementChild;
+        let footerLink = document.querySelector('ul span').firstElementChild;
         footerLink.setAttribute('href',`https://unsplash.com/@${response.user.username}?utm_source=ChinguGecko16&utm_medium=referral`);
         footerLink.innerText = response.user.name;
     });

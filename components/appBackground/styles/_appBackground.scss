@@ -9,3 +9,26 @@ html {
 footer.fixed-bottom {
     z-index: 1;
 }
+
+.main-page-nav {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-size:0.5em;
+
+    span {
+        margin-right: auto;
+        color: #ffffff;
+
+        a {
+            color: #ffffff;
+            transition: all 0.5s;
+
+            &:hover{
+                color:#999999;
+                transition: all 0.5s;
+            }
+        }
+    }
+}

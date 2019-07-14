@@ -9,6 +9,7 @@ import {
 
 const updateClockFace = (uiTimerCount) => {
 
+    //I was unable to make the pie timer work on a transparent background - the app looks much better without a white clock background
     let pieTimer = document.querySelector('.degree');
     let clockHandColor = '#1fbb39';
     let percentRatio = 0.277777777777778; //percentRatio is percentage per degree
@@ -37,17 +38,16 @@ const updateClockFace = (uiTimerCount) => {
 
 const resetTimerUI = () => {
 
-    document.querySelector('.degree').style.backgroundImage = `linear-gradient(#1fbb39,#1fbb39)`;
+    //document.querySelector('.degree').style.backgroundImage = `linear-gradient(#1fbb39,#1fbb39)`;
 
     // Tells the user if they should be working or having a break
     if (runningTimer.sessionTimer) {
+       
         document.getElementById('timer-status').textContent = 'Time to work';
-        console.log('at session');
     } else if (runningTimer.breakTimer) {
+       
         document.getElementById('timer-status').textContent = 'Have a break';
-        console.log('at breaktime');
     }
-
 };
 
 const setMinutes = (callback) => {
